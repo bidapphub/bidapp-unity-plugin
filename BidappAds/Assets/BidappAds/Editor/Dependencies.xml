@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dependencies>
+ <androidPackages>
+    <!-- Global set of repositories to search for packages.
+         These repos will be searched for all packages specified by
+         androidPackage. -->
+    <repositories>
+      <repository>https://repo.maven.apache.org/maven2</repository>
+    </repositories>
+    <!-- The "spec" attribute is *required* and provides the Maven package
+         specification.
+
+         Currently this only supports group:artifact:version_specification where
+         group:artifact:version_specification references a Maven package that
+         can be located in:
+         * Maven central.
+         * Google's Maven repo.
+         * Local Android SDK Maven repo.
+
+         Additional repositories can be added using the "repositories" element.
+    -->
+    <androidPackage spec="io.bidapp:sdk:1.0.0">
+      <!-- androidSdkPackageIds is optional and contains the set of Android
+           SDK package manager components (packages) this package requires.
+
+           If the package can't be found in any of the specified repositories,
+           the dependency resolver will attempt to install the set of Android
+           SDK packages specified here and then attempt resolution again.
+      -->
+      <androidSdkPackageIds>
+        <androidSdkPackageId>extra-google-m2repository</androidSdkPackageId>
+      </androidSdkPackageIds>
+      <!-- "repositories" are optional and contain the set of additional
+           repository URIs to search for this package. -->
+      <repositories>
+        <repository>https://maven.google.com</repository>
+        <repository>https://cboost.jfrog.io/artifactory/chartboost-ads/</repository>
+      </repositories>    
+    </androidPackage>
+     <androidPackage spec="io.bidapp.networks:applovin:1.0.0" />
+      <androidPackage spec="io.bidapp.networks:applovinmax:1.0.0" />
+       <androidPackage spec="io.bidapp.networks:chartboost:1.0.0" />
+     <androidPackage spec="io.bidapp.networks:liftoff:1.0.0" />
+     <androidPackage spec="io.bidapp.networks:unity:1.0.0" />
+        <androidPackage spec="io.bidapp.networks:admob:1.0.0" />
+        <androidPackage spec="org.jetbrains.kotlin:kotlin-stdlib:1.9.21" />
+        <androidPackage spec="org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3" />
+  </androidPackages>
+
+  <iosPods>
+    <iosPod name="bidapp" addToAllTargets="false" />
+    <iosPod name="bidapp/Applovin" addToAllTargets="false" />
+    <iosPod name="bidapp/ApplovinMax" addToAllTargets="false" />
+    <iosPod name="bidapp/Unity" addToAllTargets="false" />
+    <iosPod name="bidapp/Liftoff" addToAllTargets="false" />
+    <iosPod name="bidapp/Chartboost" addToAllTargets="false" />
+    <iosPod name="bidapp/AdMob" addToAllTargets="false" />
+  </iosPods>
+</dependencies>

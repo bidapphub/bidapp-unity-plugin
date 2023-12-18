@@ -7,17 +7,17 @@ namespace Bidapp
     {
         //---
         [DllImport("__Internal")]
-        private static extern void Bidapp_start_platform(string pubid, string adContentType);
+        private static extern void Bidapp_start_platform(string pubid, string formats);
 
-        public override void Start(string pubid, string adContentType)
+        public override void Start(string pubid, string formats)
         {
-            if (null != adContentType &&
-               (adContentType.Contains("-")))
+            if (null != formats &&
+               (formats.Contains("-")))
             {
-                Debug.Log("!!! WARNING !!! You passed Bidapp pubid value to the adContentType parameter while calling start() method!");
+                Debug.Log("!!! WARNING !!! You passed Bidapp pubid value to the formats parameter while calling start() method!");
             }
 
-            Bidapp_start_platform(pubid, adContentType);
+            Bidapp_start_platform(pubid, formats);
         }
 
         //---

@@ -5,19 +5,19 @@ namespace Bidapp
 {
     public sealed class BidappBindingAndroid : BidappBinding
     {
-        public void Bidapp_start_platform(string appId = "", string adContentType = BidappContentType.Interstitial)
+        public void Bidapp_start_platform(string appId = "", string format = BidappFormat.Interstitial)
         {
-            if (null != adContentType &&
-               (adContentType.Contains(":")))
+            if (null != format &&
+               (format.Contains(":")))
             {
-			    Debug.Log("!!! WARNING !!! You passed AdCel appId value to the adContentType parameter while calling start() method!");
+			    Debug.Log("!!! WARNING !!! You passed AdCel appId value to the format parameter while calling start() method!");
 			}
             Debug.Log("INITIALIZE");
-			BidappAndroidWrapper.Bidapp_start_platform(appId, adContentType);
+			BidappAndroidWrapper.Bidapp_start_platform(appId, format);
         }
-        public override void Start(string appId = "", string adContentType = BidappContentType.Interstitial)
+        public override void Start(string appId = "", string format = BidappFormat.Interstitial)
         {
-            Bidapp_start_platform(appId, adContentType);
+            Bidapp_start_platform(appId, format);
         }
 
         //---

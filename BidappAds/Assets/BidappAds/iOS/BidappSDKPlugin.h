@@ -16,7 +16,7 @@ extern "C"
 #endif
 #endif
     
-    void Bidapp_start_platform(const char* pubid, const char* adContentType);
+    void Bidapp_start_platform(const char* pubid, const char* formats);
     void Bidapp_setLogging_platform(bool logging);
     void Bidapp_setTestMode_platform(bool testMode);
 

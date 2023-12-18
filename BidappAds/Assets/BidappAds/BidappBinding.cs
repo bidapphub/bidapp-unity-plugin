@@ -40,7 +40,7 @@ namespace Bidapp
             }
         }
 
-        public virtual void Start(string appId, string adContentType)
+        public virtual void Start(string appId, string formats)
         {
         }
 

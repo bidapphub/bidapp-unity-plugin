@@ -366,19 +366,19 @@ static BIDConfiguration* config()
 	return config;
 }
 
-void Bidapp_start_platform_(NSString* pubid, NSString* adContentType)
+void Bidapp_start_platform_(NSString* pubid, NSString* formats)
 {
-	if ([adContentType rangeOfString:BIDAPP_INTERSTITIAL].location != NSNotFound)
+	if ([formats rangeOfString:BIDAPP_INTERSTITIAL].location != NSNotFound)
 	{
 		[config() enableInterstitialAds];
 	}
 	
-	if ([adContentType rangeOfString:BIDAPP_REWARDED].location != NSNotFound)
+	if ([formats rangeOfString:BIDAPP_REWARDED].location != NSNotFound)
 	{
 		[config() enableRewardedAds];
 	}
 	
-	if ([adContentType rangeOfString:BIDAPP_BANNER].location != NSNotFound)
+	if ([formats rangeOfString:BIDAPP_BANNER].location != NSNotFound)
 	{
 		[config() enableBannerAds];
 	}
@@ -398,22 +398,22 @@ void Bidapp_start_platform_(NSString* pubid, NSString* adContentType)
 }
 
 
-void Bidapp_start_platform(const char* pubid, const char* adContentType)
+void Bidapp_start_platform(const char* pubid, const char* formats)
 {
 	NSString* pubid_ = ToNSString(pubid);
-	NSString* adContentType_ = ToNSString(adContentType);
+	NSString* formats_ = ToNSString(formats);
 	
 	if (![NSThread isMainThread])
 	{
 		dispatch_async(dispatch_get_main_queue(), ^{
 			
-			Bidapp_start_platform_(pubid_,adContentType_);
+			Bidapp_start_platform_(pubid_,formats_);
 		});
 		
 		return;
 	}
 	
-	Bidapp_start_platform_(pubid_,adContentType_);
+	Bidapp_start_platform_(pubid_,formats_);
 }
 
 void Bidapp_setLogging_platform(bool logging)

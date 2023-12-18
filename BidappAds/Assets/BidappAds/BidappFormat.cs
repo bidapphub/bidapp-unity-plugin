@@ -1,6 +1,6 @@
 namespace Bidapp
 {
-    public static class BidappContentType
+    public static class BidappFormat
     {
         public const string Image = "Image";
         public const string Video = "Video";

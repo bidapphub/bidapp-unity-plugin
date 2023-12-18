@@ -206,5 +206,23 @@ namespace Bidapp
         {
             Bidapp_pause_platform(pauseStatus);
         }
+
+        //---
+        [DllImport("__Internal")]
+        private static extern void Bidapp_setParameterValue_platform(string parameterName, string parameterValue, string instanceIdentifier);
+
+        public override void SetParameterValue(string parameterName, string parameterValue, string instanceIdentifier)
+        {
+            Bidapp_setParameterValue_platform(parameterName, parameterValue, instanceIdentifier);
+        }
+
+        //---
+        [DllImport("__Internal")]
+        private static extern string Bidapp_getParameterValue_platform(string parameterName, string instanceIdentifier);
+
+        public override string GetParameterValue(string parameterName, string instanceIdentifier)
+        {
+            return GetParameterValue(parameterName, instanceIdentifier);
+        }
     }
 }

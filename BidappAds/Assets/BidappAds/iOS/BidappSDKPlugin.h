@@ -44,6 +44,9 @@ extern "C"
     
     //Used in Unity platform only
     void Bidapp_setUnityCallbackTargetName_platform(const char* targetName);
+
+    void Bidapp_setParameterValue_platform(const char* parameterName, const char* parameterValue, const char* instanceIdentifier);
+    const char* Bidapp_getParameterValue_platform(const char* parameterName, const char* instanceIdentifier);
     
 #ifdef __cplusplus
 #ifdef BIDAPP_USE_C_EXTERN

@@ -111,5 +111,11 @@ namespace Bidapp
         public virtual void SetSubjectToCOPPA(bool consent) { }
 
         public virtual void RequestTrackingAuthorization() { }
+
+        public virtual void SetParameterValue(string parameterName, string parameterValue, string instanceIdentifier="") { }
+        public virtual string GetParameterValue(string parameterName, string instanceIdentifier = "")
+        {
+            return "";
+        }
     }
 }

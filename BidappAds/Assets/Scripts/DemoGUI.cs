@@ -46,7 +46,7 @@ public class DemoGUI : MonoBehaviour
         BidappBinding.Instance.SetTestMode(true);        
 		BidappBinding.Instance.SetLogging(true);
 
-        string adContentType = BidappContentType.Interstitial + BidappContentType.Banner + BidappContentType.Rewarded;
+        string adContentType = BidappFormat.Interstitial + BidappFormat.Banner + BidappFormat.Rewarded;
 
         string pubid = "";
 

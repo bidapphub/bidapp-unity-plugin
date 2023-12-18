@@ -806,3 +806,11 @@ void Bidapp_pause_platform(bool pauseStatus)
 #endif
 }
 
+void Bidapp_setParameterValue_platform(const char* parameterName, const char* parameterValue, const char* instanceIdentifier)
+{
+}
+
+const char* Bidapp_getParameterValue_platform(const char* parameterName, const char* instanceIdentifier)
+{
+    return FromNSString(@"");
+}

@@ -110,16 +110,6 @@ namespace UnityEngine.Advertisements
                 {
                     applicationStarted = true;
                 }
-                if (each.Contains("android {"))
-        {
-            applicationStarted = true;
-            builder.AppendLine(each);
-            // Непосредственно после начала блока android добавляем packagingOptions
-            builder.AppendLine("    packagingOptions {");
-            builder.AppendLine("        pickFirst 'META-INF/kotlinx_coroutines_core.version'");
-            builder.AppendLine("    }");
-            continue; // Пропускаем остальные строки в этой итерации
-        }
                 if (each.Contains("dependencies") && applicationStarted)
                 {
            builder.AppendLine("repositories {");

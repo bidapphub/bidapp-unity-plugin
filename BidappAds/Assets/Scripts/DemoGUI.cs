@@ -25,7 +25,7 @@ public class DemoGUI : MonoBehaviour
         sdkDelegate.OnInterstitialDidClickAd += (interstitialIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnInterstitialDidClickAd: interstitialId {0}, providerId: {1}", interstitialIdentifier, providerId));
         sdkDelegate.OnInterstitialDidHideAd += (interstitialIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnInterstitialDidHideAd: interstitialId {0}, providerId: {1}", interstitialIdentifier, providerId));
         sdkDelegate.OnInterstitialDidFailToDisplayAd += (interstitialIdentifier, providerId, errorDescription) => Debug.Log(String.Format("BIDUnity OnInterstitialDidFailToDisplayAd: interstitialId {0}, providerId: {1}, errorDescription: {2}", interstitialIdentifier, providerId, errorDescription));
-        sdkDelegate.OnInterstitialAllNetworksFailedToDisplayAd += (interstitialIdentifier) => Debug.Log(String.Format("BIDUnity OnInterstitialAllNetworksFailedToDisplayAd: interstitialId {0}, providerId: {1}", interstitialIdentifier));
+        sdkDelegate.OnInterstitialAllNetworksFailedToDisplayAd += (interstitialIdentifier) => Debug.Log(String.Format("BIDUnity OnInterstitialAllNetworksFailedToDisplayAd: interstitialId {0}", interstitialIdentifier));
 
         sdkDelegate.OnRewardedDidLoadAd += (rewardedIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnRewardedDidLoadAd: rewardedId {0}, providerId: {1}", rewardedIdentifier, providerId));
         sdkDelegate.OnRewardedDidFailToLoadAd += (rewardedIdentifier, providerId, errorDescription) => Debug.Log(String.Format("BIDUnity OnRewardedDidFailToLoadAd: interstitialId {0}, providerId: {1}, errorDescription: {2}", rewardedIdentifier, providerId, errorDescription));

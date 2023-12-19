@@ -10,7 +10,7 @@ namespace Bidapp
             if (null != format &&
                (format.Contains(":")))
             {
-			    Debug.Log("!!! WARNING !!! You passed AdCel appId value to the format parameter while calling start() method!");
+			    Debug.Log("!!! WARNING !!! You passed Bidapp appId value to the adContentType parameter while calling start() method!");
 			}
             Debug.Log("INITIALIZE");
 			BidappAndroidWrapper.Bidapp_start_platform(appId, format);

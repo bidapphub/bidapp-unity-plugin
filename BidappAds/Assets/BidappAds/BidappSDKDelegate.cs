@@ -27,6 +27,8 @@ namespace Bidapp
         public event Action<string,string> OnBannerClicked;
         public event Action<string> OnBannerAllNetworksFailedToDisplayAd;
 
+        public event Action<string[]> OnEvent;
+
         public static BidappSDKDelegate CreateInstance(MonoBehaviour obj)
         {
             BidappSDKDelegate sdkDelegate = null;
@@ -200,6 +202,14 @@ namespace Bidapp
             if (OnBannerAllNetworksFailedToDisplayAd != null)
             {
                 OnBannerAllNetworksFailedToDisplayAd(identifier);
+            }
+        }
+
+        protected void event_OnEvent(string[] arguments)
+        {
+            if (OnEvent != null)
+            {
+                OnEvent(arguments);
             }
         }
     }

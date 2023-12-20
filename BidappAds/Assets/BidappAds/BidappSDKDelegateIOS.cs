@@ -174,6 +174,13 @@ namespace Bidapp
             event_OnBannerAllNetworksFailedToDisplayAd(identifier);
         }
 
+        private void onEvent(string packedArguments)
+        {
+            string[] args = UnpackArgs(packedArguments, 1000);
+
+            event_OnEvent(args);
+        }
+
         private string[] UnpackArgs(string s, uint count)
         {
             if (0 == count)

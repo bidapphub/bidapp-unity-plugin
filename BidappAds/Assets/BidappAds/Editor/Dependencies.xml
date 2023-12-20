@@ -48,7 +48,8 @@
   </androidPackages>
 
   <iosPods>
-    <iosPod name="bidapp" addToAllTargets="false" />
+    <iosPod name="bidappUnity" addToAllTargets="false" />
+    <iosPod name="bidapp/SDK" addToAllTargets="false" />
     <iosPod name="bidapp/Applovin" addToAllTargets="false" />
     <iosPod name="bidapp/ApplovinMax" addToAllTargets="false" />
     <iosPod name="bidapp/Unity" addToAllTargets="false" />

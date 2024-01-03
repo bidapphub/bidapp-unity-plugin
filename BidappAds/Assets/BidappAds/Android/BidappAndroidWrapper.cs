@@ -289,7 +289,7 @@ namespace Bidapp.AndroidWrapper
 		private static AndroidJavaClass GetWrapperClass()
 		{
 			AndroidJNI.AttachCurrentThread();
-            return new AndroidJavaClass("io.bidapp.bidappunitywrapper.BidappUnity");
+            return new AndroidJavaClass("io.bidapp.bidappUnity.BidappUnity");
 		}
 #endif
 

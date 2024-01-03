@@ -11,7 +11,7 @@ namespace Bidapp.AndroidWrapper
 	{
         protected ATABidappAdListener() 
 #if UNITY_ANDROID
-            : base("io.bidapp.bidappunitywrapper.BidappAdsListener")
+            : base("io.bidapp.bidappUnity.BidappAdsListener")
 #endif
 		{
 		}

@@ -19,7 +19,8 @@
 
          Additional repositories can be added using the "repositories" element.
     -->
-    <androidPackage spec="io.bidapp:sdk:1.0.0">
+    <androidPackage spec="io.bidapp:sdk:1.0.1">
+       
       <!-- androidSdkPackageIds is optional and contains the set of Android
            SDK package manager components (packages) this package requires.
 
@@ -37,12 +38,16 @@
         <repository>https://cboost.jfrog.io/artifactory/chartboost-ads/</repository>
       </repositories>    
     </androidPackage>
-     <androidPackage spec="io.bidapp.networks:applovin:1.0.0" />
-      <androidPackage spec="io.bidapp.networks:applovinmax:1.0.0" />
-       <androidPackage spec="io.bidapp.networks:chartboost:1.0.0" />
-     <androidPackage spec="io.bidapp.networks:liftoff:1.0.0" />
-     <androidPackage spec="io.bidapp.networks:unity:1.0.0" />
-        <androidPackage spec="io.bidapp.networks:admob:1.0.0" />
+    <androidPackage spec="io.bidapp:bidappUnity:1.0.1" />
+     <androidPackage spec="io.bidapp.networks:applovin:1.0.1" />
+      <androidPackage spec="io.bidapp.networks:applovinmax:1.0.1" />
+       <androidPackage spec="io.bidapp.networks:chartboost:1.0.1" />
+     <androidPackage spec="io.bidapp.networks:liftoff:1.0.1" />
+     <androidPackage spec="io.bidapp.networks:unity:1.0.1" />
+        <androidPackage spec="io.bidapp.networks:admob:1.0.1" />
+            <androidPackage spec="io.bidapp.networks:digitalturbine:1.0.1" />
+     <androidPackage spec="io.bidapp.networks:facebook:1.0.1" />
+        <androidPackage spec="io.bidapp.networks:startIo:1.0.1" />
         <androidPackage spec="org.jetbrains.kotlin:kotlin-stdlib:1.9.21" />
         <androidPackage spec="org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3" />
   </androidPackages>

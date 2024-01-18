@@ -103,9 +103,6 @@ namespace Bidapp
                 _sdkDelegate.event_OnBannerAllNetworksFailedToDisplayAd(identifier);                
             }
 
-
-
-
         }
 
    };

@@ -19,7 +19,7 @@
 
          Additional repositories can be added using the "repositories" element.
     -->
-    <androidPackage spec="io.bidapp:sdk:1.0.1">
+    <androidPackage spec="io.bidapp:sdk:1.0.3">
        
       <!-- androidSdkPackageIds is optional and contains the set of Android
            SDK package manager components (packages) this package requires.
@@ -38,7 +38,7 @@
         <repository>https://cboost.jfrog.io/artifactory/chartboost-ads/</repository>
       </repositories>    
     </androidPackage>
-    <androidPackage spec="io.bidapp:bidappUnity:1.0.1" />
+    <androidPackage spec="io.bidapp:bidappUnity:1.0.3" />
      <androidPackage spec="io.bidapp.networks:applovin:1.0.1" />
       <androidPackage spec="io.bidapp.networks:applovinmax:1.0.1" />
        <androidPackage spec="io.bidapp.networks:chartboost:1.0.1" />

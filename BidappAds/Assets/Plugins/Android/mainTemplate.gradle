@@ -13,8 +13,8 @@ dependencies {
     implementation 'io.bidapp.networks:liftoff:1.0.1' // Assets/BidappAds/Editor/Dependencies.xml:45
     implementation 'io.bidapp.networks:startIo:1.0.1' // Assets/BidappAds/Editor/Dependencies.xml:50
     implementation 'io.bidapp.networks:unity:1.0.1' // Assets/BidappAds/Editor/Dependencies.xml:46
-    implementation 'io.bidapp:bidappUnity:1.0.1' // Assets/BidappAds/Editor/Dependencies.xml:41
-    implementation 'io.bidapp:sdk:1.0.1' // Assets/BidappAds/Editor/Dependencies.xml:40
+    implementation 'io.bidapp:bidappUnity:1.0.3' // Assets/BidappAds/Editor/Dependencies.xml:41
+    implementation 'io.bidapp:sdk:1.0.3' // Assets/BidappAds/Editor/Dependencies.xml:40
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.21' // Assets/BidappAds/Editor/Dependencies.xml:51
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3' // Assets/BidappAds/Editor/Dependencies.xml:52
 // Android Resolver Dependencies End

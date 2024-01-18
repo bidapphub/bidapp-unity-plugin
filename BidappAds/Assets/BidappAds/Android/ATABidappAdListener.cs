@@ -83,7 +83,9 @@ namespace Bidapp.AndroidWrapper
 
 
 
-		
+		public virtual void OnBannerDidLoadAd(String identifier, String networkId)
+		{
+        }
 
 		public virtual void OnBannerDidDisplayAd(String identifier, String networkId)
 		{

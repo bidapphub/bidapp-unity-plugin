@@ -14,7 +14,6 @@
     </activity>
     <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
     <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3940256099942544~3347511713" />
-    <meta-data android:name="applovin.sdk.key" android:value="Your_SDK_Key" />
     <meta-data android:name="adtoapp.sdk.plugin" android:value="unity" />
     <provider android:name="com.startapp.sdk.adsbase.StartAppInitProvider" android:authorities="com.bidapp.demo.startappinitprovider" tools:node="remove" />
   </application>

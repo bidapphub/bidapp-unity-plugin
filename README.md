@@ -10,7 +10,7 @@
     </p>
 </div>
 
-# Bidapp ads kotlin multiplatform demo
+# Bidapp ads unity plugin
 Current repository сontains Bidapp demo app for Unity
 
 # Documentation

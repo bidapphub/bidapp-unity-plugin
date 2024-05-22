@@ -11,7 +11,7 @@
 </div>
 
 # Bidapp ads Unity plugin
-Current repository сontains Bidapp demo app for Unity
+Current repository сontains Bidapp demo app with plugin for Unity
 
 # Documentation
 Complete integration instructions and usage guide for the Bidapp Ads SDK can be found [here](https://docs.bidapp.io).

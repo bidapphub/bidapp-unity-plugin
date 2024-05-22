@@ -10,7 +10,7 @@
     </p>
 </div>
 
-# Bidapp ads unity plugin
+# Bidapp ads Unity plugin
 Current repository сontains Bidapp demo app for Unity
 
 # Documentation

@@ -33,7 +33,7 @@ between ad networks, taking into account user geography and ad rate for your inv
     <!--androidPackage spec="io.bidapp.networks:digitalturbine:1.1.0" /-->
     <!--androidPackage spec="io.bidapp.networks:facebook:1.1.0" /-->      
 ```
-Launch forse resolve in Unity project (Assets -> External Dependency Manager)
+Launch forse resolve in Unity project (Assets -> External Dependency Manager -> Android Resolver -> Force Resolve)
 
 - Example for IOS
 

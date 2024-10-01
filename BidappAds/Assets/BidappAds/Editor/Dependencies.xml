@@ -19,7 +19,7 @@
 
          Additional repositories can be added using the "repositories" element.
     -->
-    <androidPackage spec="io.bidapp:sdk:2.0.1">
+    <androidPackage spec="io.bidapp:sdk:2.1.0">
        
       <!-- androidSdkPackageIds is optional and contains the set of Android
            SDK package manager components (packages) this package requires.
@@ -39,17 +39,17 @@
       </repositories>    
     </androidPackage>
     <androidPackage spec="io.bidapp:bidappUnity:1.1.0" />
-     <androidPackage spec="io.bidapp.networks:applovin:2.0.0" />
-      <androidPackage spec="io.bidapp.networks:applovinmax:2.0.0" />
-       <androidPackage spec="io.bidapp.networks:chartboost:2.0.0" />
-     <androidPackage spec="io.bidapp.networks:liftoff:2.0.1" />
-     <androidPackage spec="io.bidapp.networks:unity:2.0.0" />
-        <androidPackage spec="io.bidapp.networks:admob:2.0.0" />
-            <androidPackage spec="io.bidapp.networks:digitalturbine:2.0.0" />
-     <androidPackage spec="io.bidapp.networks:facebook:2.0.0" />
-        <androidPackage spec="io.bidapp.networks:startIo:2.0.1" />
-     <androidPackage spec="io.bidapp.networks:yandex:2.0.1" />
-     <androidPackage spec="io.bidapp.networks:mytarget:2.0.0" />
+     <androidPackage spec="io.bidapp.networks:applovin:2.1.0" />
+      <androidPackage spec="io.bidapp.networks:applovinmax:2.1.0" />
+       <androidPackage spec="io.bidapp.networks:chartboost:2.1.0" />
+     <androidPackage spec="io.bidapp.networks:liftoff:2.1.0" />
+     <androidPackage spec="io.bidapp.networks:unity:2.1.0" />
+        <androidPackage spec="io.bidapp.networks:admob:2.1.0" />
+            <androidPackage spec="io.bidapp.networks:digitalturbine:2.1.0" />
+     <androidPackage spec="io.bidapp.networks:facebook:2.1.0" />
+        <androidPackage spec="io.bidapp.networks:startIo:2.1.0" />
+     <androidPackage spec="io.bidapp.networks:yandex:2.1.0" />
+     <androidPackage spec="io.bidapp.networks:mytarget:2.1.0" />
         <androidPackage spec="org.jetbrains.kotlin:kotlin-stdlib:1.9.21" />
         <androidPackage spec="org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3" />
   </androidPackages>

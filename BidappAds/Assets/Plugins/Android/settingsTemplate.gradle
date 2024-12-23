@@ -22,10 +22,16 @@ dependencyResolutionManagement {
             url "https://repo.maven.apache.org/maven2" // Assets/BidappAds/Editor/Dependencies.xml:9
         }
         maven {
-            url "https://maven.google.com" // Assets/BidappAds/Editor/Dependencies.xml:40
+            url "https://maven.google.com" // Assets/BidappAds/Editor/Dependencies.xml:42
         }
         maven {
-            url "https://cboost.jfrog.io/artifactory/chartboost-ads/" // Assets/BidappAds/Editor/Dependencies.xml:40
+            url "https://cboost.jfrog.io/artifactory/chartboost-ads/" // Assets/BidappAds/Editor/Dependencies.xml:42
+        }
+        maven {
+            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" // Assets/BidappAds/Editor/Dependencies.xml:42
+        }
+        maven {
+            url "https://android-sdk.is.com/" // Assets/BidappAds/Editor/Dependencies.xml:42
         }
         mavenLocal()
 // Android Resolver Repos End

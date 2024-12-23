@@ -4,21 +4,23 @@ apply plugin: 'com.android.library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 // Android Resolver Dependencies Start
-    implementation 'io.bidapp.networks:admob:2.1.0' // Assets/BidappAds/Editor/Dependencies.xml:47
-    implementation 'io.bidapp.networks:applovin:2.1.0' // Assets/BidappAds/Editor/Dependencies.xml:42
-    implementation 'io.bidapp.networks:applovinmax:2.1.0' // Assets/BidappAds/Editor/Dependencies.xml:43
-    implementation 'io.bidapp.networks:chartboost:2.1.0' // Assets/BidappAds/Editor/Dependencies.xml:44
-    implementation 'io.bidapp.networks:digitalturbine:2.1.0' // Assets/BidappAds/Editor/Dependencies.xml:48
-    implementation 'io.bidapp.networks:facebook:2.1.0' // Assets/BidappAds/Editor/Dependencies.xml:49
-    implementation 'io.bidapp.networks:liftoff:2.1.0' // Assets/BidappAds/Editor/Dependencies.xml:45
-    implementation 'io.bidapp.networks:mytarget:2.1.0' // Assets/BidappAds/Editor/Dependencies.xml:52
-    implementation 'io.bidapp.networks:startIo:2.1.0' // Assets/BidappAds/Editor/Dependencies.xml:50
-    implementation 'io.bidapp.networks:unity:2.1.0' // Assets/BidappAds/Editor/Dependencies.xml:46
-    implementation 'io.bidapp.networks:yandex:2.1.0' // Assets/BidappAds/Editor/Dependencies.xml:51
-    implementation 'io.bidapp:bidappUnity:1.1.0' // Assets/BidappAds/Editor/Dependencies.xml:41
-    implementation 'io.bidapp:sdk:2.1.0' // Assets/BidappAds/Editor/Dependencies.xml:40
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.21' // Assets/BidappAds/Editor/Dependencies.xml:53
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3' // Assets/BidappAds/Editor/Dependencies.xml:54
+    implementation 'io.bidapp.networks:admob:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:49
+    implementation 'io.bidapp.networks:applovin:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:44
+    implementation 'io.bidapp.networks:applovinmax:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:45
+    implementation 'io.bidapp.networks:bigoads:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:57
+    implementation 'io.bidapp.networks:chartboost:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:46
+    implementation 'io.bidapp.networks:digitalturbine:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:50
+    implementation 'io.bidapp.networks:facebook:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:51
+    implementation 'io.bidapp.networks:inmobi:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:55
+    implementation 'io.bidapp.networks:ironsource:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:58
+    implementation 'io.bidapp.networks:liftoff:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:47
+    implementation 'io.bidapp.networks:mintegral:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:56
+    implementation 'io.bidapp.networks:mytarget:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:54
+    implementation 'io.bidapp.networks:startIo:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:52
+    implementation 'io.bidapp.networks:unity:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:48
+    implementation 'io.bidapp.networks:yandex:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:53
+    implementation 'io.bidapp:bidappUnity:1.1.0' // Assets/BidappAds/Editor/Dependencies.xml:43
+    implementation 'io.bidapp:sdk:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:42
 // Android Resolver Dependencies End
 **DEPS**}
 

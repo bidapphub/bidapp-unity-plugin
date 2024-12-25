@@ -19,16 +19,14 @@ dependencies {
     implementation 'io.bidapp.networks:startIo:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:52
     implementation 'io.bidapp.networks:unity:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:48
     implementation 'io.bidapp.networks:yandex:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:53
-    implementation 'io.bidapp:bidappUnity:1.1.0' // Assets/BidappAds/Editor/Dependencies.xml:43
+    implementation 'io.bidapp:bidappUnity:2.0.0' // Assets/BidappAds/Editor/Dependencies.xml:59
     implementation 'io.bidapp:sdk:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:42
 // Android Resolver Dependencies End
 **DEPS**}
 
 // Android Resolver Exclusions Start
 android {
-	namespace "com.unity3d.player"
   packagingOptions {
-      exclude ('/lib/arm64-v8a/*' + '*')
       exclude ('/lib/armeabi/*' + '*')
       exclude ('/lib/mips/*' + '*')
       exclude ('/lib/mips64/*' + '*')

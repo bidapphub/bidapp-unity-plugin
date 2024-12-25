@@ -114,7 +114,6 @@ namespace UnityEngine.Advertisements
                 {
            builder.AppendLine("repositories {");
             builder.AppendLine("    mavenCentral()");
-            builder.AppendLine("    maven { url 'https://cboost.jfrog.io/artifactory/chartboost-ads/' }");
             builder.AppendLine("}");
                 }
                 builder.AppendLine(each);

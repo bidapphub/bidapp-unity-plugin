@@ -40,7 +40,7 @@
                 <repository>https://android-sdk.is.com/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="io.bidapp:bidappUnity:1.1.0" />
+      
         <androidPackage spec="io.bidapp.networks:applovin:2.2.5" />
         <androidPackage spec="io.bidapp.networks:applovinmax:2.2.5" />
         <androidPackage spec="io.bidapp.networks:chartboost:2.2.5" />
@@ -56,6 +56,7 @@
         <androidPackage spec="io.bidapp.networks:mintegral:2.2.5" />
         <androidPackage spec="io.bidapp.networks:bigoads:2.2.5" />
         <androidPackage spec="io.bidapp.networks:ironsource:2.2.5" />
+		<androidPackage spec="io.bidapp:bidappUnity:2.2.5" />
 
     </androidPackages>
 

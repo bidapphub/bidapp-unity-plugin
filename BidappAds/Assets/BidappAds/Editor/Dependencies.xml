@@ -19,7 +19,7 @@
 
              Additional repositories can be added using the "repositories" element.
         -->
-        <androidPackage spec="io.bidapp:sdk:2.2.5">
+        <androidPackage spec="io.bidapp:sdk:2.3.5">
 
             <!-- androidSdkPackageIds is optional and contains the set of Android
                  SDK package manager components (packages) this package requires.
@@ -44,7 +44,7 @@
         <androidPackage spec="io.bidapp.networks:applovin:2.2.5" />
         <androidPackage spec="io.bidapp.networks:applovinmax:2.2.5" />
         <androidPackage spec="io.bidapp.networks:chartboost:2.2.5" />
-        <androidPackage spec="io.bidapp.networks:liftoff:2.2.5" />
+        <androidPackage spec="io.bidapp.networks:liftoff:2.3.0" />
         <androidPackage spec="io.bidapp.networks:unity:2.2.5" />
         <androidPackage spec="io.bidapp.networks:admob:2.2.5" />
         <androidPackage spec="io.bidapp.networks:digitalturbine:2.2.5" />
@@ -52,11 +52,11 @@
         <androidPackage spec="io.bidapp.networks:startIo:2.2.5" />
         <androidPackage spec="io.bidapp.networks:yandex:2.2.5" />
         <androidPackage spec="io.bidapp.networks:mytarget:2.2.5" />
-        <androidPackage spec="io.bidapp.networks:inmobi:2.2.5" />
-        <androidPackage spec="io.bidapp.networks:mintegral:2.2.5" />
+        <androidPackage spec="io.bidapp.networks:inmobi:2.3.0" />
+        <androidPackage spec="io.bidapp.networks:mintegral:2.3.0" />
         <androidPackage spec="io.bidapp.networks:bigoads:2.2.5" />
         <androidPackage spec="io.bidapp.networks:ironsource:2.2.5" />
-		<androidPackage spec="io.bidapp:bidappUnity:2.2.5" />
+		<androidPackage spec="io.bidapp:bidappUnity:2.3.6" />
 
     </androidPackages>
 

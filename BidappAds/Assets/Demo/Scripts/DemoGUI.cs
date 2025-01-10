@@ -28,7 +28,7 @@ public class DemoGUI : MonoBehaviour
         sdkDelegate.OnInterstitialAllNetworksFailedToDisplayAd += (interstitialIdentifier) => Debug.Log(String.Format("BIDUnity OnInterstitialAllNetworksFailedToDisplayAd: interstitialId {0}", interstitialIdentifier));
 
         sdkDelegate.OnRewardedDidLoadAd += (rewardedIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnRewardedDidLoadAd: rewardedId {0}, providerId: {1}", rewardedIdentifier, providerId));
-        sdkDelegate.OnRewardedDidFailToLoadAd += (rewardedIdentifier, providerId, errorDescription) => Debug.Log(String.Format("BIDUnity OnRewardedDidFailToLoadAd: interstitialId {0}, providerId: {1}, errorDescription: {2}", rewardedIdentifier, providerId, errorDescription));
+        sdkDelegate.OnRewardedDidFailToLoadAd += (rewardedIdentifier, providerId, errorDescription) => Debug.Log(String.Format("BIDUnity OnRewardedDidFailToLoadAd: rewardedId {0}, providerId: {1}, errorDescription: {2}", rewardedIdentifier, providerId, errorDescription));
         sdkDelegate.OnRewardedDidDisplayAd += (rewardedIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnRewardedDidDisplayAd: rewardedId {0}, providerId: {1}", rewardedIdentifier, providerId));
         sdkDelegate.OnRewardedDidClickAd += (rewardedIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnRewardedDidClickAd: rewardedId {0}, providerId: {1}", rewardedIdentifier, providerId));
         sdkDelegate.OnRewardedDidHideAd += (rewardedIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnRewardedDidHideAd: rewardedId {0}, providerId: {1}", rewardedIdentifier, providerId));
@@ -92,22 +92,46 @@ public class DemoGUI : MonoBehaviour
 
 		if (GUILayout.Button("Show Interstitial 1", buttonHeight))
 		{
-			BidappBinding.Instance.ShowInterstitial(interstitialIdentifier1);
+		    if (BidappBinding.Instance.IsInterstitialAdReady(interstitialIdentifier1))
+		    {
+			    BidappBinding.Instance.ShowInterstitial(interstitialIdentifier1);
+			}
+			else {
+			    Debug.Log("Interstitial 1 with id" + interstitialIdentifier1 + " not ready");
+			}
 		}
 
 		if (GUILayout.Button("Show Interstitial 2", buttonHeight))
 		{
-            BidappBinding.Instance.ShowInterstitial(interstitialIdentifier2);
+           	if (BidappBinding.Instance.IsInterstitialAdReady(interstitialIdentifier2))
+           	{
+           	    BidappBinding.Instance.ShowInterstitial(interstitialIdentifier2);
+           	}
+           	else {
+           	    Debug.Log("Interstitial 2 with id" + interstitialIdentifier2 + " not ready");
+           	}
         }
 
 		if (GUILayout.Button("Show Rewarded 1", buttonHeight))
 		{
-            BidappBinding.Instance.ShowRewarded(rewardedIdentifier1);
+           	if (BidappBinding.Instance.IsRewardedAdReady(rewardedIdentifier1))
+           	{
+                BidappBinding.Instance.ShowRewarded(rewardedIdentifier1);
+           	}
+            else {
+                Debug.Log("Rewarded 1 with id" + rewardedIdentifier1 + " not ready");
+            }
         }
 
 		if (GUILayout.Button("Show Rewarded 2", buttonHeight))
 		{
-            BidappBinding.Instance.ShowRewarded(rewardedIdentifier2);
+           	if (BidappBinding.Instance.IsRewardedAdReady(rewardedIdentifier2))
+           	{
+               BidappBinding.Instance.ShowRewarded(rewardedIdentifier2);
+            }
+            else {
+               Debug.Log("Rewarded 2 with id" + rewardedIdentifier2 + " not ready");
+            }
         }
 
 		if (GUILayout.Button("Show banner", buttonHeight))

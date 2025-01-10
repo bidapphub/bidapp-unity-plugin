@@ -19,8 +19,8 @@ dependencies {
     implementation 'io.bidapp.networks:startIo:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:52
     implementation 'io.bidapp.networks:unity:2.3.0' // Assets/BidappAds/Editor/Dependencies.xml:48
     implementation 'io.bidapp.networks:yandex:2.2.5' // Assets/BidappAds/Editor/Dependencies.xml:53
-    implementation 'io.bidapp:bidappUnity:2.3.7' // Assets/BidappAds/Editor/Dependencies.xml:59
-    implementation 'io.bidapp:sdk:2.3.6' // Assets/BidappAds/Editor/Dependencies.xml:42
+    implementation 'io.bidapp:bidappUnity:2.3.8' // Assets/BidappAds/Editor/Dependencies.xml:59
+    implementation 'io.bidapp:sdk:2.3.7' // Assets/BidappAds/Editor/Dependencies.xml:42
 // Android Resolver Dependencies End
 **DEPS**}
 

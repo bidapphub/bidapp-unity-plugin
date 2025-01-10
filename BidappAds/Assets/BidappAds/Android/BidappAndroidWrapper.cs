@@ -133,6 +133,22 @@ namespace Bidapp.AndroidWrapper
             }
         }
 
+        public static bool Bidapp_isInterstitialAdReady_platform(string identifier)
+            {
+            try
+            {
+                var isAdReady = GetBridge().CallStatic<bool>("isInterstitialAdReady", identifier);
+                return isAdReady;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Failed to run interstitial is ad ready method with identifier: {identifier}. Error: {e.Message}");
+                return false;
+            }
+        }
+
+
+
         //----------------------------------------------------------------
 
         public static string Bidapp_createRewarded_platform(bool enableAutoload)
@@ -182,6 +198,22 @@ namespace Bidapp.AndroidWrapper
             catch (Exception e)
             {
                 Debug.LogError($"Failed to show rewarded ad with identifier: {identifier}. Error: {e.Message}");
+            }
+        }
+
+
+
+        public static bool Bidapp_isRewardedAdReady_platform(string identifier)
+        {
+            try
+            {
+                var isAdReady = GetBridge().CallStatic<bool>("isRewardedAdReady", identifier);
+                return isAdReady;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Failed to run rewarded is ad ready method with identifier: {identifier}. Error: {e.Message}");
+                return false;
             }
         }
 

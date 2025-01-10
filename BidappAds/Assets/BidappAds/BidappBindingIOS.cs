@@ -66,6 +66,12 @@ namespace Bidapp
                         Bidapp_showInterstitial_platform(identifier);
                 }
 
+                //Temporary
+                public override void IsInterstitialAdReady(string identifier)
+                {
+                        return false;
+                }
+
                 //---
                 [DllImport("__Internal")]
                 private static extern string Bidapp_createRewarded_platform();
@@ -91,6 +97,13 @@ namespace Bidapp
                 public override void ShowRewarded(string identifier)
                 {
                         Bidapp_showRewarded_platform(identifier);
+                }
+
+
+                //Temporary
+                public override void IsRewardedAdReady(string identifier)
+                {
+                        return false;
                 }
 
                 //---

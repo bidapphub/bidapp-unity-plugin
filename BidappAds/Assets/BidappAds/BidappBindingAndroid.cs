@@ -70,6 +70,16 @@ namespace Bidapp
             Bidapp_showInterstitial_platform(identifier);
         }
 
+        //---
+        public bool Bidapp_isInterstitialAdReady_platform(string identifier)
+        {
+        return BidappAndroidWrapper.Bidapp_isInterstitialAdReady_platform(identifier);
+        }
+        public override bool IsInterstitialAdReady(string identifier)
+        {
+        return Bidapp_isInterstitialAdReady_platform(identifier);
+        }
+
 
         //---
 		public string Bidapp_createRewarded_platform()
@@ -92,13 +102,23 @@ namespace Bidapp
         }
 
         //---
-         public void Bidapp_showRewarded_platform(string identifier)
+        public void Bidapp_showRewarded_platform(string identifier)
 		{
 			BidappAndroidWrapper.Bidapp_showRewarded_platform(identifier);
 		}
         public override void ShowRewarded(string identifier)
         {
             Bidapp_showRewarded_platform(identifier);
+        }
+
+        //---
+        public bool Bidapp_isRewardedAdReady_platform(string identifier)
+        {
+          return BidappAndroidWrapper.Bidapp_isRewardedAdReady_platform(identifier);
+        }
+        public override bool IsRewardedAdReady(string identifier)
+        {
+          return Bidapp_isRewardedAdReady_platform(identifier);
         }
 
         //---
@@ -121,7 +141,7 @@ namespace Bidapp
             return Bidapp_showBannerAtPosition_platform(position, bannerSize, marginTop, marginLeft, marginBottom, marginRight);
         }
 
-            //---
+        //---
          public void Bidapp_stopBannerAutorefresh_platform(string identifier)
 		{
 			BidappAndroidWrapper.Bidapp_stopBannerAutorefresh_platform(identifier);

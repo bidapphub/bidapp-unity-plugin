@@ -61,6 +61,11 @@ namespace Bidapp
         {
         }
 
+        public virtual bool IsInterstitialAdReady(string identifier)
+        {
+            return false;
+        }
+
         public virtual string CreateRewarded()
         {
             return "";
@@ -73,6 +78,11 @@ namespace Bidapp
         public virtual void ShowRewarded(string identifier)
         {
         }
+
+         public virtual bool IsRewardedAdReady(string identifier)
+         {
+            return false;
+         }
 
         public virtual string ShowBanner(string bannerSize = BidappBannerSize.Size_320x50, float x = 0.0f, float y = 0.0f, float width = 320.0f, float height = 50.0f)
         {

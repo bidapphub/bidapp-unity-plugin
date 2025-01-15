@@ -1,33 +1,45 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Bidapp
 {
+   public interface IBidappInterstitialDelegate
+    {
+        void OnInterstitialDidLoadAd(string identifier, string networkId);
+        void OnInterstitialDidFailToLoadAd(string identifier, string networkId, string errorDescription);
+        void OnInterstitialDidDisplayAd(string identifier, string networkId);
+        void OnInterstitialDidClickAd(string identifier, string networkId);
+        void OnInterstitialDidHideAd(string identifier, string networkId);
+        void OnInterstitialDidFailToDisplayAd(string identifier, string networkId, string errorDescription);
+        void OnInterstitialAllNetworksFailedToDisplayAd(string identifier); 
+    }
+
+   public interface IBidappRewardedDelegate
+    {
+        void OnRewardedDidLoadAd(string identifier, string networkId);
+        void OnRewardedDidFailToLoadAd(string identifier, string networkId, string errorDescription);
+        void OnRewardedDidDisplayAd(string identifier, string networkId);
+        void OnRewardedDidClickAd(string identifier, string networkId);
+        void OnRewardedDidHideAd(string identifier, string networkId);
+        void OnRewardedDidFailToDisplayAd(string identifier, string networkId, string errorDescription);
+        void OnRewardedAllNetworksFailedToDisplayAd(string identifier);
+        void OnUserDidReceiveReward(string identifier);
+    }
+    
+   public interface IBidappBannerDelegate
+    {
+        void OnBannerDidDisplayAd(string identifier, string networkId);
+        void OnBannerFailedToDisplayAd(string identifier, string networkId, string errorDescription);
+        void OnBannerClicked(string identifier, string networkId);
+        void OnBannerAllNetworksFailedToDisplayAd(string identifier);
+    }
+
     public class BidappSDKDelegate : MonoBehaviour
     {
-        public event Action<string, string> OnInterstitialDidLoadAd;
-        public event Action<string, string, string> OnInterstitialDidFailToLoadAd;
-        public event Action<string, string> OnInterstitialDidDisplayAd;
-        public event Action<string, string> OnInterstitialDidClickAd;
-        public event Action<string, string> OnInterstitialDidHideAd;
-        public event Action<string, string, string> OnInterstitialDidFailToDisplayAd;
-        public event Action<string> OnInterstitialAllNetworksFailedToDisplayAd;
-
-        public event Action<string, string> OnRewardedDidLoadAd;
-        public event Action<string, string, string> OnRewardedDidFailToLoadAd;
-        public event Action<string, string> OnRewardedDidDisplayAd;
-        public event Action<string, string> OnRewardedDidClickAd;
-        public event Action<string, string> OnRewardedDidHideAd;
-        public event Action<string, string, string> OnRewardedDidFailToDisplayAd;
-        public event Action<string> OnRewardedAllNetworksFailedToDisplayAd;
-        public event Action<string> OnUserDidReceiveReward;
-
-        public event Action<string,string> OnBannerDidDisplayAd;
-        public event Action<string,string,string> OnBannerFailedToDisplayAd;
-        public event Action<string,string> OnBannerClicked;
-        public event Action<string> OnBannerAllNetworksFailedToDisplayAd;
-
-        public event Action<string[]> OnEvent;
+        private Dictionary<string, IBidappInterstitialDelegate> interstitialDelegates = new Dictionary<string, IBidappInterstitialDelegate>();
+        private Dictionary<string, IBidappRewardedDelegate> rewardedDelegates = new Dictionary<string, IBidappRewardedDelegate>();
+        private Dictionary<string, IBidappBannerDelegate> bannerDelegates = new Dictionary<string, IBidappBannerDelegate>();
 
         public static BidappSDKDelegate CreateInstance(MonoBehaviour obj)
         {
@@ -51,25 +63,28 @@ namespace Bidapp
 
         protected void event_OnInterstitialDidLoadAd(string identifier, string networkId)
         {
-            if (OnInterstitialDidLoadAd != null)
+            IBidappInterstitialDelegate interstitialDelegate = null;
+            if (interstitialDelegates.TryGetValue(identifier, out interstitialDelegate))
             {
-                OnInterstitialDidLoadAd(identifier, networkId);
+                interstitialDelegate.OnInterstitialDidLoadAd(identifier, networkId);
             }
         }
 
         protected void event_OnInterstitialDidFailToLoadAd(string identifier, string networkId, string errorDescription)
         {
-            if (OnInterstitialDidFailToLoadAd != null)
+            IBidappInterstitialDelegate interstitialDelegate = null;
+            if (interstitialDelegates.TryGetValue(identifier, out interstitialDelegate))
             {
-                OnInterstitialDidFailToLoadAd(identifier, networkId, errorDescription);
+                interstitialDelegate.OnInterstitialDidFailToLoadAd(identifier, networkId, errorDescription);
             }
         }
 
         protected void event_OnInterstitialDidDisplayAd(string identifier, string networkId)
         {
-            if (OnInterstitialDidDisplayAd != null)
+            IBidappInterstitialDelegate interstitialDelegate = null;
+            if (interstitialDelegates.TryGetValue(identifier, out interstitialDelegate))
             {
-                OnInterstitialDidDisplayAd(identifier, networkId);
+                interstitialDelegate.OnInterstitialDidDisplayAd(identifier, networkId);
             }
 
             BidappBinding.Instance.Pause(true);
@@ -77,57 +92,62 @@ namespace Bidapp
 
         protected void event_OnInterstitialDidClickAd(string identifier, string networkId)
         {
-            if (OnInterstitialDidClickAd != null)
+            IBidappInterstitialDelegate interstitialDelegate = null;
+            if (interstitialDelegates.TryGetValue(identifier, out interstitialDelegate))
             {
-                OnInterstitialDidClickAd(identifier, networkId);
+                interstitialDelegate.OnInterstitialDidClickAd(identifier, networkId);
             }
         }
 
         protected void event_OnInterstitialDidHideAd(string identifier, string networkId)
         {
-            if (OnInterstitialDidHideAd != null)
+            IBidappInterstitialDelegate interstitialDelegate = null;
+            if (interstitialDelegates.TryGetValue(identifier, out interstitialDelegate))
             {
-                OnInterstitialDidHideAd(identifier, networkId);
+                interstitialDelegate.OnInterstitialDidHideAd(identifier, networkId);
             }
         }
 
         protected void event_OnInterstitialDidFailToDisplayAd(string identifier, string networkId, string errorDescription)
         {
-            if (OnInterstitialDidFailToDisplayAd != null)
+            IBidappInterstitialDelegate interstitialDelegate = null;
+            if (interstitialDelegates.TryGetValue(identifier, out interstitialDelegate))
             {
-                OnInterstitialDidFailToDisplayAd(identifier, networkId, errorDescription);
+                interstitialDelegate.OnInterstitialDidFailToDisplayAd(identifier, networkId, errorDescription);
             }
         }
 
         protected void event_OnInterstitialAllNetworksFailedToDisplayAd(string identifier)
         {
-            if (OnInterstitialAllNetworksFailedToDisplayAd != null)
+            IBidappInterstitialDelegate interstitialDelegate = null;
+            if (interstitialDelegates.TryGetValue(identifier, out interstitialDelegate))
             {
-                OnInterstitialAllNetworksFailedToDisplayAd(identifier);
+                interstitialDelegate.OnInterstitialAllNetworksFailedToDisplayAd(identifier);
             }
         }
 
         protected void event_OnRewardedDidLoadAd(string identifier, string networkId)
         {
-            if (OnRewardedDidLoadAd != null)
+            IBidappRewardedDelegate rewardedDelegate = null;
+            if (rewardedDelegates.TryGetValue(identifier, out rewardedDelegate))
             {
-                OnRewardedDidLoadAd(identifier, networkId);
+                rewardedDelegate.OnRewardedDidLoadAd(identifier, networkId);
             }
         }
 
         protected void event_OnRewardedDidFailToLoadAd(string identifier, string networkId, string errorDescription)
         {
-            if (OnRewardedDidFailToLoadAd != null)
-            {
-                OnRewardedDidFailToLoadAd(identifier, networkId, errorDescription);
+            IBidappRewardedDelegate rewardedDelegate = null;
+            if (rewardedDelegates.TryGetValue(identifier, out rewardedDelegate)) {
+                rewardedDelegate.OnRewardedDidFailToLoadAd(identifier, networkId, errorDescription);
             }
         }
 
         protected void event_OnRewardedDidDisplayAd(string identifier, string networkId)
         {
-            if (OnRewardedDidDisplayAd != null)
-            {
-                OnRewardedDidDisplayAd(identifier, networkId);
+            IBidappRewardedDelegate rewardedDelegate = null;
+            if (rewardedDelegates.TryGetValue(identifier, out rewardedDelegate)) {
+                rewardedDelegate.OnRewardedDidDisplayAd(identifier, networkId);
             }
 
             BidappBinding.Instance.Pause(true);
@@ -135,82 +155,144 @@ namespace Bidapp
 
         protected void event_OnRewardedDidClickAd(string identifier, string networkId)
         {
-            if (OnRewardedDidClickAd != null)
+            IBidappRewardedDelegate rewardedDelegate = null;
+            if (rewardedDelegates.TryGetValue(identifier, out rewardedDelegate))
             {
-                OnRewardedDidClickAd(identifier, networkId);
+                rewardedDelegate.OnRewardedDidClickAd(identifier, networkId);
             }
         }
 
         protected void event_OnRewardedDidHideAd(string identifier, string networkId)
         {
-            if (OnRewardedDidHideAd != null)
+            IBidappRewardedDelegate rewardedDelegate = null;
+            if (rewardedDelegates.TryGetValue(identifier, out rewardedDelegate))
             {
-                OnRewardedDidHideAd(identifier, networkId);
+                rewardedDelegate.OnRewardedDidHideAd(identifier, networkId);
             }
         }
 
         protected void event_OnRewardedDidFailToDisplayAd(string identifier, string networkId, string errorDescription)
         {
-            if (OnRewardedDidFailToDisplayAd != null)
+            IBidappRewardedDelegate rewardedDelegate = null;
+            if (rewardedDelegates.TryGetValue(identifier, out rewardedDelegate))
             {
-                OnRewardedDidFailToDisplayAd(identifier, networkId, errorDescription);
+                rewardedDelegate.OnRewardedDidFailToDisplayAd(identifier, networkId, errorDescription);
             }
         }
 
         protected void event_OnRewardedAllNetworksFailedToDisplayAd(string identifier)
         {
-            if (OnRewardedAllNetworksFailedToDisplayAd != null)
+            IBidappRewardedDelegate rewardedDelegate = null;
+            if (rewardedDelegates.TryGetValue(identifier, out rewardedDelegate))
             {
-                OnRewardedAllNetworksFailedToDisplayAd(identifier);
+                rewardedDelegate.OnRewardedAllNetworksFailedToDisplayAd(identifier);
             }
         }
 
         protected void event_OnUserDidReceiveReward(string identifier)
         {
-            if (OnUserDidReceiveReward != null)
+            IBidappRewardedDelegate rewardedDelegate = null;
+            if (rewardedDelegates.TryGetValue(identifier, out rewardedDelegate))
             {
-                OnUserDidReceiveReward(identifier);
+                rewardedDelegate.OnUserDidReceiveReward(identifier);
             }
         }
 
         protected void event_OnBannerDidDisplayAd(string identifier, string networkId)
         {
-            if (OnBannerDidDisplayAd != null)
+            IBidappBannerDelegate bannerDelegate = null;
+            if (bannerDelegates.TryGetValue(identifier, out bannerDelegate))
             {
-                OnBannerDidDisplayAd(identifier,networkId);
+                bannerDelegate.OnBannerDidDisplayAd(identifier,networkId);
             }
         }
 
         protected void event_OnBannerFailedToDisplayAd(string identifier, string networkId, string errorDescription)
         {
-            if (OnBannerFailedToDisplayAd != null)
+            IBidappBannerDelegate bannerDelegate = null;
+            if (bannerDelegates.TryGetValue(identifier, out bannerDelegate))
             {
-                OnBannerFailedToDisplayAd(identifier, networkId, errorDescription);
+                bannerDelegate.OnBannerFailedToDisplayAd(identifier, networkId, errorDescription);
             }
         }
 
         protected void event_OnBannerClicked(string identifier, string networkId)
         {
-            if (OnBannerClicked != null)
+            IBidappBannerDelegate bannerDelegate = null;
+            if (bannerDelegates.TryGetValue(identifier, out bannerDelegate))
             {
-                OnBannerClicked(identifier,networkId);
+                bannerDelegate.OnBannerClicked(identifier,networkId);
             }
         }
 
         protected void event_OnBannerAllNetworksFailedToDisplayAd(string identifier)
         {
-            if (OnBannerAllNetworksFailedToDisplayAd != null)
+            IBidappBannerDelegate bannerDelegate = null;
+            if (bannerDelegates.TryGetValue(identifier, out bannerDelegate))
             {
-                OnBannerAllNetworksFailedToDisplayAd(identifier);
+                bannerDelegate.OnBannerAllNetworksFailedToDisplayAd(identifier);
             }
         }
+          
 
         protected void event_OnEvent(string[] arguments)
         {
-            if (OnEvent != null)
+            //Unknown event
+        }
+
+        public void SetInterstitialDelegate(IBidappInterstitialDelegate interstitialDelegate, string identifier)
+        {
+            if (string.IsNullOrEmpty(identifier))
             {
-                OnEvent(arguments);
+                // Обработка случая, когда идентификатор равен null или пустой строке
+                return;
+            }
+
+            if (interstitialDelegate != null)
+            {
+                interstitialDelegates[identifier] = interstitialDelegate;  // добавление или обновление
+            }
+            else
+            {
+                interstitialDelegates.Remove(identifier);  // удаление
             }
         }
+
+        public void SetRewardedDelegate(IBidappRewardedDelegate rewardedDelegate, string identifier)
+        {
+            if (string.IsNullOrEmpty(identifier))
+            {
+                // Обработка случая, когда идентификатор равен null или пустой строке
+                return;
+            }
+
+            if (rewardedDelegate != null)
+            {
+                rewardedDelegates[identifier] = rewardedDelegate;  // добавление или обновление
+            }
+            else
+            {
+                rewardedDelegates.Remove(identifier);  // удаление
+            }
+        }
+
+        public void SetBannerDelegate(IBidappBannerDelegate bannerDelegate, string identifier)
+        {
+            if (string.IsNullOrEmpty(identifier))
+            {
+                // Обработка случая, когда идентификатор равен null или пустой строке
+                return;
+            }
+
+            if (bannerDelegate != null)
+            {
+                bannerDelegates[identifier] = bannerDelegate;  // добавление или обновление
+            }
+            else
+            {
+                bannerDelegates.Remove(identifier);  // удаление
+            }
+        }
+
     }
 }

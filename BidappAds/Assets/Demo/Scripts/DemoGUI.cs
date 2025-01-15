@@ -10,6 +10,7 @@ public class DemoGUI : MonoBehaviour
     string rewardedIdentifier1;
     string rewardedIdentifier2;
     string bannerIdentifier;
+    BidappSDKDelegate sdkDelegate;
 
     // Use this for initialization
     void Start()
@@ -17,30 +18,8 @@ public class DemoGUI : MonoBehaviour
 #if UNITY_ANDROID
         Debug.Log("BidappAndroidVersion: " + BidappAndroidWrapper.Version);
 #endif
-        var sdkDelegate = BidappSDKDelegate.CreateInstance(this);
-
-        sdkDelegate.OnInterstitialDidLoadAd += (interstitialIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnInterstitialDidLoadAd: interstitialId {0}, providerId: {1}", interstitialIdentifier, providerId));
-        sdkDelegate.OnInterstitialDidFailToLoadAd += (interstitialIdentifier, providerId, errorDescription) => Debug.Log(String.Format("BIDUnity OnInterstitialDidFailToLoadAd: interstitialId {0}, providerId: {1}, errorDescription: {2}", interstitialIdentifier, providerId, errorDescription));
-        sdkDelegate.OnInterstitialDidDisplayAd += (interstitialIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnInterstitialDidDisplayAd: interstitialId {0}, providerId: {1}", interstitialIdentifier, providerId));
-        sdkDelegate.OnInterstitialDidClickAd += (interstitialIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnInterstitialDidClickAd: interstitialId {0}, providerId: {1}", interstitialIdentifier, providerId));
-        sdkDelegate.OnInterstitialDidHideAd += (interstitialIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnInterstitialDidHideAd: interstitialId {0}, providerId: {1}", interstitialIdentifier, providerId));
-        sdkDelegate.OnInterstitialDidFailToDisplayAd += (interstitialIdentifier, providerId, errorDescription) => Debug.Log(String.Format("BIDUnity OnInterstitialDidFailToDisplayAd: interstitialId {0}, providerId: {1}, errorDescription: {2}", interstitialIdentifier, providerId, errorDescription));
-        sdkDelegate.OnInterstitialAllNetworksFailedToDisplayAd += (interstitialIdentifier) => Debug.Log(String.Format("BIDUnity OnInterstitialAllNetworksFailedToDisplayAd: interstitialId {0}", interstitialIdentifier));
-
-        sdkDelegate.OnRewardedDidLoadAd += (rewardedIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnRewardedDidLoadAd: rewardedId {0}, providerId: {1}", rewardedIdentifier, providerId));
-        sdkDelegate.OnRewardedDidFailToLoadAd += (rewardedIdentifier, providerId, errorDescription) => Debug.Log(String.Format("BIDUnity OnRewardedDidFailToLoadAd: rewardedId {0}, providerId: {1}, errorDescription: {2}", rewardedIdentifier, providerId, errorDescription));
-        sdkDelegate.OnRewardedDidDisplayAd += (rewardedIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnRewardedDidDisplayAd: rewardedId {0}, providerId: {1}", rewardedIdentifier, providerId));
-        sdkDelegate.OnRewardedDidClickAd += (rewardedIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnRewardedDidClickAd: rewardedId {0}, providerId: {1}", rewardedIdentifier, providerId));
-        sdkDelegate.OnRewardedDidHideAd += (rewardedIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnRewardedDidHideAd: rewardedId {0}, providerId: {1}", rewardedIdentifier, providerId));
-        sdkDelegate.OnRewardedDidFailToDisplayAd += (rewardedIdentifier, providerId, errorDescription) => Debug.Log(String.Format("BIDUnity OnRewardedDidDisplayAd: interstitialId {0}, providerId: {1}, errorDescription: {2}", rewardedIdentifier, providerId, errorDescription));
-        sdkDelegate.OnRewardedAllNetworksFailedToDisplayAd += (rewardedIdentifier) => Debug.Log(String.Format("BIDUnity OnRewardedAllNetworksFailedToDisplayAd: rewardedId {0}", rewardedIdentifier));
-        sdkDelegate.OnUserDidReceiveReward += (rewardedIdentifier) => Debug.Log(String.Format("BIDUnity OnUserDidReceiveReward: rewardedId {0}", rewardedIdentifier));
-
-        sdkDelegate.OnBannerDidDisplayAd += (bannerIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnBannerDidDisplayAd: bannerId {0}, providerId: {1}", bannerIdentifier, providerId));
-        sdkDelegate.OnBannerFailedToDisplayAd += (bannerIdentifier, providerId, errorDescription) => Debug.Log(String.Format("BIDUnity OnBannerDidDisplayAd: bannerId {0}, providerId: {1}, errorDescription: {2}", bannerIdentifier, providerId, errorDescription));
-        sdkDelegate.OnBannerClicked += (bannerIdentifier, providerId) => Debug.Log(String.Format("BIDUnity OnBannerClicked: bannerId {0}, providerId: {1}", bannerIdentifier, providerId));
-        sdkDelegate.OnBannerAllNetworksFailedToDisplayAd += (bannerIdentifier) => Debug.Log(String.Format("BIDUnity OnBannerAllNetworksFailedToDisplayAd: bannerId {0}", bannerIdentifier));
-
+        sdkDelegate = BidappSDKDelegate.CreateInstance(this);
+    
         BidappBinding.Instance.SetCallbacks(sdkDelegate);
         
         BidappBinding.Instance.SetTestMode(true);        
@@ -63,9 +42,13 @@ public class DemoGUI : MonoBehaviour
         BidappBinding.Instance.Start(pubid, adContentType);
 
 		interstitialIdentifier1 = BidappBinding.Instance.CreateInterstitial();
+        sdkDelegate.SetInterstitialDelegate(new BidappInterstitialDelegate(), interstitialIdentifier1);
         interstitialIdentifier2 = BidappBinding.Instance.CreateInterstitial();
+        sdkDelegate.SetInterstitialDelegate(new BidappInterstitialDelegate2(), interstitialIdentifier2);
         rewardedIdentifier1 = BidappBinding.Instance.CreateRewarded();
+        sdkDelegate.SetRewardedDelegate(new BidappRewardedDelegate(), rewardedIdentifier1);
         rewardedIdentifier2 = BidappBinding.Instance.CreateRewarded();
+        sdkDelegate.SetRewardedDelegate(new BidappRewardedDelegate2(), rewardedIdentifier2);
 
         Debug.Log("Started with pubid = " + pubid);
     }
@@ -136,14 +119,18 @@ public class DemoGUI : MonoBehaviour
 
 		if (GUILayout.Button("Show banner", buttonHeight))
 		{
-			BidappBinding.Instance.RemoveBanner(bannerIdentifier);
+            sdkDelegate.SetBannerDelegate(null, bannerIdentifier);
+            BidappBinding.Instance.RemoveBanner(bannerIdentifier);
 			bannerIdentifier = BidappBinding.Instance.ShowBanner(BidappBannerSize.Size_320x50, 0f, 100f, 320f, 50f);
-		}
+            sdkDelegate.SetBannerDelegate(new BidappBannerDelegate(), bannerIdentifier);
+        }
 
 		if (GUILayout.Button("Show Banner At Position", buttonHeight))
 		{
+            sdkDelegate.SetBannerDelegate(null, bannerIdentifier);
             BidappBinding.Instance.RemoveBanner(bannerIdentifier);
             bannerIdentifier = BidappBinding.Instance.ShowBannerAtPosition(BidappBannerPosition.BottomCenter, BidappBannerSize.Size_320x50);
+            sdkDelegate.SetBannerDelegate(new BidappBannerDelegate(), bannerIdentifier);
         }
 
 		if (GUILayout.Button("Set banner refresh interval", buttonHeight))
@@ -163,7 +150,8 @@ public class DemoGUI : MonoBehaviour
 
 		if (GUILayout.Button("Remove banner", buttonHeight))
 		{
-			BidappBinding.Instance.RemoveBanner(bannerIdentifier);
+            sdkDelegate.SetBannerDelegate(null, bannerIdentifier);
+            BidappBinding.Instance.RemoveBanner(bannerIdentifier);
             bannerIdentifier = "";
         }
 
@@ -174,5 +162,191 @@ public class DemoGUI : MonoBehaviour
     {
         Debug.Log("OnApplicationPause: " + pauseStatus);
         BidappBinding.Instance.OnPause(pauseStatus);
+    }
+}
+
+public class BidappInterstitialDelegate : IBidappInterstitialDelegate
+{
+    public void OnInterstitialDidLoadAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity OnInterstitialDidLoadAd: interstitialId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnInterstitialDidFailToLoadAd(string identifier, string networkId, string errorDescription)
+    {
+        Debug.Log($"BIDUnity OnInterstitialDidFailToLoadAd: interstitialId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+    }
+
+    public void OnInterstitialDidDisplayAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity OnInterstitialDidDisplayAd: interstitialId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnInterstitialDidClickAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity OnInterstitialDidClickAd: interstitialId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnInterstitialDidHideAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity OnInterstitialDidHideAd: interstitialId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnInterstitialDidFailToDisplayAd(string identifier, string networkId, string errorDescription)
+    {
+        Debug.Log($"BIDUnity OnInterstitialDidFailToDisplayAd: interstitialId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+    }
+
+    public void OnInterstitialAllNetworksFailedToDisplayAd(string identifier)
+    {
+        Debug.Log($"BIDUnity OnInterstitialAllNetworksFailedToDisplayAd: interstitialId {identifier}");
+    }
+}
+
+public class BidappRewardedDelegate : IBidappRewardedDelegate
+{
+    public void OnRewardedDidLoadAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity OnRewardedDidLoadAd: rewardedId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnRewardedDidFailToLoadAd(string identifier, string networkId, string errorDescription)
+    {
+        Debug.Log($"BIDUnity OnRewardedDidFailToLoadAd: rewardedId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+    }
+
+    public void OnRewardedDidDisplayAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity OnRewardedDidDisplayAd: rewardedId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnRewardedDidClickAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity OnRewardedDidClickAd: rewardedId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnRewardedDidHideAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity OnRewardedDidHideAd: rewardedId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnRewardedDidFailToDisplayAd(string identifier, string networkId, string errorDescription)
+    {
+        Debug.Log($"BIDUnity OnRewardedDidFailToDisplayAd: rewardedId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+    }
+
+    public void OnRewardedAllNetworksFailedToDisplayAd(string identifier)
+    {
+        Debug.Log($"BIDUnity OnRewardedAllNetworksFailedToDisplayAd: rewardedId {identifier}");
+    }
+
+    public void OnUserDidReceiveReward(string identifier)
+    {
+        Debug.Log($"BIDUnity OnUserDidReceiveReward: rewardedId {identifier}");
+    }
+}
+
+
+public class BidappInterstitialDelegate2 : IBidappInterstitialDelegate
+{
+    public void OnInterstitialDidLoadAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity Interstitial2 OnInterstitialDidLoadAd: interstitialId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnInterstitialDidFailToLoadAd(string identifier, string networkId, string errorDescription)
+    {
+        Debug.Log($"BIDUnity Interstitial2 OnInterstitialDidFailToLoadAd: interstitialId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+    }
+
+    public void OnInterstitialDidDisplayAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity Interstitial2 OnInterstitialDidDisplayAd: interstitialId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnInterstitialDidClickAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity Interstitial2 OnInterstitialDidClickAd: interstitialId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnInterstitialDidHideAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity Interstitial2 OnInterstitialDidHideAd: interstitialId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnInterstitialDidFailToDisplayAd(string identifier, string networkId, string errorDescription)
+    {
+        Debug.Log($"BIDUnity Interstitial2 OnInterstitialDidFailToDisplayAd: interstitialId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+    }
+
+    public void OnInterstitialAllNetworksFailedToDisplayAd(string identifier)
+    {
+        Debug.Log($"BIDUnity Interstitial2 OnInterstitialAllNetworksFailedToDisplayAd: interstitialId {identifier}");
+    }
+}
+
+public class BidappRewardedDelegate2 : IBidappRewardedDelegate
+{
+    public void OnRewardedDidLoadAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity Rewarded2 OnRewardedDidLoadAd: rewardedId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnRewardedDidFailToLoadAd(string identifier, string networkId, string errorDescription)
+    {
+        Debug.Log($"BIDUnity Rewarded2 OnRewardedDidFailToLoadAd: rewardedId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+    }
+
+    public void OnRewardedDidDisplayAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity Rewarded2 OnRewardedDidDisplayAd: rewardedId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnRewardedDidClickAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity Rewarded2 OnRewardedDidClickAd: rewardedId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnRewardedDidHideAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity Rewarded2 OnRewardedDidHideAd: rewardedId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnRewardedDidFailToDisplayAd(string identifier, string networkId, string errorDescription)
+    {
+        Debug.Log($"BIDUnity Rewarded2 OnRewardedDidFailToDisplayAd: rewardedId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+    }
+
+    public void OnRewardedAllNetworksFailedToDisplayAd(string identifier)
+    {
+        Debug.Log($"BIDUnity Rewarded2 OnRewardedAllNetworksFailedToDisplayAd: rewardedId {identifier}");
+    }
+
+    public void OnUserDidReceiveReward(string identifier)
+    {
+        Debug.Log($"BIDUnity Rewarded2 OnUserDidReceiveReward: rewardedId {identifier}");
+    }
+}
+
+public class BidappBannerDelegate : IBidappBannerDelegate
+{
+    public void OnBannerDidDisplayAd(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity OnBannerDidDisplayAd: bannerId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnBannerFailedToDisplayAd(string identifier, string networkId, string errorDescription)
+    {
+        Debug.Log($"BIDUnity OnBannerFailedToDisplayAd: bannerId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+    }
+
+    public void OnBannerClicked(string identifier, string networkId)
+    {
+        Debug.Log($"BIDUnity OnBannerClicked: bannerId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnBannerAllNetworksFailedToDisplayAd(string identifier)
+    {
+        Debug.Log($"BIDUnity OnBannerAllNetworksFailedToDisplayAd: bannerId {identifier}");
     }
 }

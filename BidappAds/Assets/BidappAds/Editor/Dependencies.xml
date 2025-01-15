@@ -19,7 +19,7 @@
 
              Additional repositories can be added using the "repositories" element.
         -->
-        <androidPackage spec="io.bidapp:sdk:2.3.7">
+        <androidPackage spec="io.bidapp:sdk:2.3.8">
 
             <!-- androidSdkPackageIds is optional and contains the set of Android
                  SDK package manager components (packages) this package requires.

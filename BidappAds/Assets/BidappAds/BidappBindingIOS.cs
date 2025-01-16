@@ -66,10 +66,13 @@ namespace Bidapp
                         Bidapp_showInterstitial_platform(identifier);
                 }
 
-                //Temporary
-                public override void IsInterstitialAdReady(string identifier)
+                //---
+                [DllImport("__Internal")]
+                private static extern bool Bidapp_isAdReady_platform(string identifier);
+
+                public override bool IsInterstitialAdReady(string identifier)
                 {
-                        return false;
+                        return Bidapp_isAdReady_platform(identifier);
                 }
 
                 //---
@@ -99,11 +102,9 @@ namespace Bidapp
                         Bidapp_showRewarded_platform(identifier);
                 }
 
-
-                //Temporary
-                public override void IsRewardedAdReady(string identifier)
+                public override bool IsRewardedAdReady(string identifier)
                 {
-                        return false;
+                        return Bidapp_isAdReady_platform(identifier);
                 }
 
                 //---

@@ -47,7 +47,7 @@
         <androidPackage spec="io.bidapp.networks:liftoff:2.3.0" />
         <androidPackage spec="io.bidapp.networks:unity:2.3.0" />
         <androidPackage spec="io.bidapp.networks:admob:2.2.5" />
-        <androidPackage spec="io.bidapp.networks:digitalturbine:2.3.0" />
+        <androidPackage spec="io.bidapp.networks:digitalturbine:2.3.5" />
         <androidPackage spec="io.bidapp.networks:facebook:2.2.5" />
         <androidPackage spec="io.bidapp.networks:startIo:2.2.5" />
         <androidPackage spec="io.bidapp.networks:yandex:2.2.5" />
@@ -56,7 +56,7 @@
         <androidPackage spec="io.bidapp.networks:mintegral:2.3.0" />
         <androidPackage spec="io.bidapp.networks:bigoads:2.2.5" />
         <androidPackage spec="io.bidapp.networks:ironsource:2.3.0" />
-		<androidPackage spec="io.bidapp:bidappUnity:2.3.8" />
+		<androidPackage spec="io.bidapp:bidappUnity:2.3.9" />
 
     </androidPackages>
 

@@ -10,17 +10,16 @@ public class DemoGUI : MonoBehaviour
     string rewardedIdentifier1;
     string rewardedIdentifier2;
     string bannerIdentifier;
-    BidappSDKDelegate sdkDelegate;
-
+ 
     // Use this for initialization
     void Start()
     {
 #if UNITY_ANDROID
         Debug.Log("BidappAndroidVersion: " + BidappAndroidWrapper.Version);
 #endif
-        sdkDelegate = BidappSDKDelegate.CreateInstance(this);
+        BidappSDKDelegate.CreateInstance(this);
     
-        BidappBinding.Instance.SetCallbacks(sdkDelegate);
+        BidappBinding.Instance.SetCallbacks(BidappSDKDelegate.Instance);
         
         BidappBinding.Instance.SetTestMode(true);        
 		BidappBinding.Instance.SetLogging(true);
@@ -42,13 +41,13 @@ public class DemoGUI : MonoBehaviour
         BidappBinding.Instance.Start(pubid, adContentType);
 
 		interstitialIdentifier1 = BidappBinding.Instance.CreateInterstitial();
-        sdkDelegate.SetInterstitialDelegate(new BidappInterstitialDelegate(), interstitialIdentifier1);
+        BidappSDKDelegate.Instance.SetInterstitialDelegate(new BidappInterstitialDelegate(), interstitialIdentifier1);
         interstitialIdentifier2 = BidappBinding.Instance.CreateInterstitial();
-        sdkDelegate.SetInterstitialDelegate(new BidappInterstitialDelegate2(), interstitialIdentifier2);
+        BidappSDKDelegate.Instance.SetInterstitialDelegate(new BidappInterstitialDelegate2(), interstitialIdentifier2);
         rewardedIdentifier1 = BidappBinding.Instance.CreateRewarded();
-        sdkDelegate.SetRewardedDelegate(new BidappRewardedDelegate(), rewardedIdentifier1);
+        BidappSDKDelegate.Instance.SetRewardedDelegate(new BidappRewardedDelegate(), rewardedIdentifier1);
         rewardedIdentifier2 = BidappBinding.Instance.CreateRewarded();
-        sdkDelegate.SetRewardedDelegate(new BidappRewardedDelegate2(), rewardedIdentifier2);
+        BidappSDKDelegate.Instance.SetRewardedDelegate(new BidappRewardedDelegate2(), rewardedIdentifier2);
 
         Debug.Log("Started with pubid = " + pubid);
     }
@@ -119,18 +118,18 @@ public class DemoGUI : MonoBehaviour
 
 		if (GUILayout.Button("Show banner", buttonHeight))
 		{
-            sdkDelegate.SetBannerDelegate(null, bannerIdentifier);
+            BidappSDKDelegate.Instance.SetBannerDelegate(null, bannerIdentifier);
             BidappBinding.Instance.RemoveBanner(bannerIdentifier);
 			bannerIdentifier = BidappBinding.Instance.ShowBanner(BidappBannerSize.Size_320x50, 0f, 100f, 320f, 50f);
-            sdkDelegate.SetBannerDelegate(new BidappBannerDelegate(), bannerIdentifier);
+            BidappSDKDelegate.Instance.SetBannerDelegate(new BidappBannerDelegate(), bannerIdentifier);
         }
 
 		if (GUILayout.Button("Show Banner At Position", buttonHeight))
 		{
-            sdkDelegate.SetBannerDelegate(null, bannerIdentifier);
+            BidappSDKDelegate.Instance.SetBannerDelegate(null, bannerIdentifier);
             BidappBinding.Instance.RemoveBanner(bannerIdentifier);
             bannerIdentifier = BidappBinding.Instance.ShowBannerAtPosition(BidappBannerPosition.BottomCenter, BidappBannerSize.Size_320x50);
-            sdkDelegate.SetBannerDelegate(new BidappBannerDelegate(), bannerIdentifier);
+            BidappSDKDelegate.Instance.SetBannerDelegate(new BidappBannerDelegate(), bannerIdentifier);
         }
 
 		if (GUILayout.Button("Set banner refresh interval", buttonHeight))
@@ -150,7 +149,7 @@ public class DemoGUI : MonoBehaviour
 
 		if (GUILayout.Button("Remove banner", buttonHeight))
 		{
-            sdkDelegate.SetBannerDelegate(null, bannerIdentifier);
+            BidappSDKDelegate.Instance.SetBannerDelegate(null, bannerIdentifier);
             BidappBinding.Instance.RemoveBanner(bannerIdentifier);
             bannerIdentifier = "";
         }

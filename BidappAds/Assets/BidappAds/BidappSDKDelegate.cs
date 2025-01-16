@@ -41,24 +41,29 @@ namespace Bidapp
         private Dictionary<string, IBidappRewardedDelegate> rewardedDelegates = new Dictionary<string, IBidappRewardedDelegate>();
         private Dictionary<string, IBidappBannerDelegate> bannerDelegates = new Dictionary<string, IBidappBannerDelegate>();
 
-        public static BidappSDKDelegate CreateInstance(MonoBehaviour obj)
+        private static BidappSDKDelegate _sdkDelegate = null;
+        public static BidappSDKDelegate Instance
+        { 
+            get { 
+                return _sdkDelegate;
+            }
+        }
+
+        public static void CreateInstance(MonoBehaviour obj)
         {
-            BidappSDKDelegate sdkDelegate = null;
             #if UNITY_IOS || UNITY_IPHONE
 
-            sdkDelegate = obj.gameObject.AddComponent<BidappSDKDelegateIOS>();
+            _sdkDelegate = obj.gameObject.AddComponent<BidappSDKDelegateIOS>();
 
             #elif UNITY_ANDROID
 
-            sdkDelegate = obj.gameObject.AddComponent<BidappSDKDelegateAndroid>();
+            _sdkDelegate = obj.gameObject.AddComponent<BidappSDKDelegateAndroid>();
 
             #else
 
-            sdkDelegate = obj.gameObject.AddComponent<BidappSDKDelegate>();
+            _sdkDelegate = obj.gameObject.AddComponent<BidappSDKDelegate>();
 
             #endif
-
-            return sdkDelegate;
         }
 
         protected void event_OnInterstitialDidLoadAd(string identifier, string networkId)
@@ -244,17 +249,17 @@ namespace Bidapp
         {
             if (string.IsNullOrEmpty(identifier))
             {
-                // Обработка случая, когда идентификатор равен null или пустой строке
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ null пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                 return;
             }
 
             if (interstitialDelegate != null)
             {
-                interstitialDelegates[identifier] = interstitialDelegate;  // добавление или обновление
+                interstitialDelegates[identifier] = interstitialDelegate;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             }
             else
             {
-                interstitialDelegates.Remove(identifier);  // удаление
+                interstitialDelegates.Remove(identifier);  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             }
         }
 
@@ -262,17 +267,17 @@ namespace Bidapp
         {
             if (string.IsNullOrEmpty(identifier))
             {
-                // Обработка случая, когда идентификатор равен null или пустой строке
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ null пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                 return;
             }
 
             if (rewardedDelegate != null)
             {
-                rewardedDelegates[identifier] = rewardedDelegate;  // добавление или обновление
+                rewardedDelegates[identifier] = rewardedDelegate;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             }
             else
             {
-                rewardedDelegates.Remove(identifier);  // удаление
+                rewardedDelegates.Remove(identifier);  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             }
         }
 
@@ -280,17 +285,17 @@ namespace Bidapp
         {
             if (string.IsNullOrEmpty(identifier))
             {
-                // Обработка случая, когда идентификатор равен null или пустой строке
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ null пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                 return;
             }
 
             if (bannerDelegate != null)
             {
-                bannerDelegates[identifier] = bannerDelegate;  // добавление или обновление
+                bannerDelegates[identifier] = bannerDelegate;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             }
             else
             {
-                bannerDelegates.Remove(identifier);  // удаление
+                bannerDelegates.Remove(identifier);  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             }
         }
 

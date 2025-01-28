@@ -16,11 +16,7 @@ public class DemoGUI : MonoBehaviour
     {
 #if UNITY_ANDROID
         Debug.Log("BidappAndroidVersion: " + BidappAndroidWrapper.Version);
-#endif
-         BidappSDKDelegate.CreateInstance(this);
-    
-         BidappBinding.Instance.SetCallbacks(BidappSDKDelegate.Instance);
-        
+#endif       
         BidappBinding.Instance.SetTestMode(true);        
 		BidappBinding.Instance.SetLogging(true);
 

@@ -18,6 +18,7 @@ namespace Bidapp
         public override void Start(string appId = "", string format = BidappFormat.Interstitial)
         {
             Bidapp_start_platform(appId, format);
+            SetCallbacks(BidappSDKDelegate.Instance);
         }
 
         //---

@@ -19,6 +19,7 @@ namespace Bidapp
                         }
 
                         Bidapp_start_platform(pubid, formats);
+                        SetCallbacks(BidappSDKDelegate.Instance);
                 }
 
                 //---
@@ -240,5 +241,5 @@ namespace Bidapp
                 }
 
 #endif
-        }
+    }
 }

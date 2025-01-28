@@ -58,24 +58,6 @@ namespace Bidapp
             }
         }
 
-        public static void CreateInstance(MonoBehaviour obj)
-        {
-            if (_sdkDelegate != null)
-            {
-                return;
-            }
-
-        #if UNITY_IOS || UNITY_IPHONE
-            _sdkDelegate = obj.gameObject.AddComponent<BidappSDKDelegateIOS>();
-        #elif UNITY_ANDROID
-            _sdkDelegate = obj.gameObject.AddComponent<BidappSDKDelegateAndroid>();
-        #else
-            _sdkDelegate = obj.gameObject.AddComponent<BidappSDKDelegate>();
-        #endif
-
-            BidappBinding.Instance.SetCallbacks(_sdkDelegate);
-        }
-
         private static void CreateInstance()
         {
             string objectName = "BidappSDKDelegate";
@@ -105,7 +87,6 @@ namespace Bidapp
             _sdkDelegate = new GameObject(objectName, theType).GetComponent<BidappSDKDelegate>();
         #endif
 
-            BidappBinding.Instance.SetCallbacks(_sdkDelegate);
         }
 
         void Awake()
@@ -295,18 +276,17 @@ namespace Bidapp
         public void SetInterstitialDelegate(IBidappInterstitialDelegate interstitialDelegate, string identifier)
         {
             if (string.IsNullOrEmpty(identifier))
-            {
-                // ��������� ������, ����� ������������� ����� null ��� ������ ������
+            {                
                 return;
             }
 
             if (interstitialDelegate != null)
             {
-                interstitialDelegates[identifier] = interstitialDelegate;  // ���������� ��� ����������
+                interstitialDelegates[identifier] = interstitialDelegate;  
             }
             else
             {
-                interstitialDelegates.Remove(identifier);  // ��������
+                interstitialDelegates.Remove(identifier);  
             }
         }
 
@@ -314,17 +294,16 @@ namespace Bidapp
         {
             if (string.IsNullOrEmpty(identifier))
             {
-                // ��������� ������, ����� ������������� ����� null ��� ������ ������
-                return;
+                 return;
             }
 
             if (rewardedDelegate != null)
             {
-                rewardedDelegates[identifier] = rewardedDelegate;  // ���������� ��� ����������
+                rewardedDelegates[identifier] = rewardedDelegate;  
             }
             else
             {
-                rewardedDelegates.Remove(identifier);  // ��������
+                rewardedDelegates.Remove(identifier);  
             }
         }
 
@@ -332,17 +311,16 @@ namespace Bidapp
         {
             if (string.IsNullOrEmpty(identifier))
             {
-                // ��������� ������, ����� ������������� ����� null ��� ������ ������
                 return;
             }
 
             if (bannerDelegate != null)
             {
-                bannerDelegates[identifier] = bannerDelegate;  // ���������� ��� ����������
+                bannerDelegates[identifier] = bannerDelegate; 
             }
             else
             {
-                bannerDelegates.Remove(identifier);  // ��������
+                bannerDelegates.Remove(identifier);  
             }
         }
 

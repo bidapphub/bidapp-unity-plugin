@@ -17,9 +17,9 @@ public class DemoGUI : MonoBehaviour
 #if UNITY_ANDROID
         Debug.Log("BidappAndroidVersion: " + BidappAndroidWrapper.Version);
 #endif
-        BidappSDKDelegate.CreateInstance(this);
+         BidappSDKDelegate.CreateInstance(this);
     
-        BidappBinding.Instance.SetCallbacks(BidappSDKDelegate.Instance);
+         BidappBinding.Instance.SetCallbacks(BidappSDKDelegate.Instance);
         
         BidappBinding.Instance.SetTestMode(true);        
 		BidappBinding.Instance.SetLogging(true);
@@ -34,7 +34,6 @@ public class DemoGUI : MonoBehaviour
 #if UNITY_IOS || UNITY_IPHONE
 		pubid = "15ddd248-7acc-46ce-a6fd-e6f6543d22cd";
 #endif
-       // BidappBinding.Instance.SetTestMode(true);
 
         BidappBinding.Instance.RequestTrackingAuthorization();
         
@@ -168,37 +167,37 @@ public class BidappInterstitialDelegate : IBidappInterstitialDelegate
 {
     public void OnInterstitialDidLoadAd(string identifier, string networkId)
     {
-        Debug.Log($"BIDUnity OnInterstitialDidLoadAd: interstitialId {identifier}, providerId: {networkId}");
+        Debug.Log($"BIDUnity Interstitial1 OnInterstitialDidLoadAd: interstitialId {identifier}, providerId: {networkId}");
     }
 
     public void OnInterstitialDidFailToLoadAd(string identifier, string networkId, string errorDescription)
     {
-        Debug.Log($"BIDUnity OnInterstitialDidFailToLoadAd: interstitialId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+        Debug.Log($"BIDUnity Interstitial1 OnInterstitialDidFailToLoadAd: interstitialId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
     }
 
     public void OnInterstitialDidDisplayAd(string identifier, string networkId)
     {
-        Debug.Log($"BIDUnity OnInterstitialDidDisplayAd: interstitialId {identifier}, providerId: {networkId}");
+        Debug.Log($"BIDUnity Interstitial1 OnInterstitialDidDisplayAd: interstitialId {identifier}, providerId: {networkId}");
     }
 
     public void OnInterstitialDidClickAd(string identifier, string networkId)
     {
-        Debug.Log($"BIDUnity OnInterstitialDidClickAd: interstitialId {identifier}, providerId: {networkId}");
+        Debug.Log($"BIDUnity Interstitial1 OnInterstitialDidClickAd: interstitialId {identifier}, providerId: {networkId}");
     }
 
     public void OnInterstitialDidHideAd(string identifier, string networkId)
     {
-        Debug.Log($"BIDUnity OnInterstitialDidHideAd: interstitialId {identifier}, providerId: {networkId}");
+        Debug.Log($"BIDUnity Interstitial1 OnInterstitialDidHideAd: interstitialId {identifier}, providerId: {networkId}");
     }
 
     public void OnInterstitialDidFailToDisplayAd(string identifier, string networkId, string errorDescription)
     {
-        Debug.Log($"BIDUnity OnInterstitialDidFailToDisplayAd: interstitialId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+        Debug.Log($"BIDUnity Interstitial1 OnInterstitialDidFailToDisplayAd: interstitialId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
     }
 
     public void OnInterstitialAllNetworksFailedToDisplayAd(string identifier)
     {
-        Debug.Log($"BIDUnity OnInterstitialAllNetworksFailedToDisplayAd: interstitialId {identifier}");
+        Debug.Log($"BIDUnity Interstitial1 OnInterstitialAllNetworksFailedToDisplayAd: interstitialId {identifier}");
     }
 }
 
@@ -206,42 +205,42 @@ public class BidappRewardedDelegate : IBidappRewardedDelegate
 {
     public void OnRewardedDidLoadAd(string identifier, string networkId)
     {
-        Debug.Log($"BIDUnity OnRewardedDidLoadAd: rewardedId {identifier}, providerId: {networkId}");
+        Debug.Log($"BIDUnity Rewarded1 OnRewardedDidLoadAd: rewardedId {identifier}, providerId: {networkId}");
     }
 
     public void OnRewardedDidFailToLoadAd(string identifier, string networkId, string errorDescription)
     {
-        Debug.Log($"BIDUnity OnRewardedDidFailToLoadAd: rewardedId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+        Debug.Log($"BIDUnity Rewarded1 OnRewardedDidFailToLoadAd: rewardedId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
     }
 
     public void OnRewardedDidDisplayAd(string identifier, string networkId)
     {
-        Debug.Log($"BIDUnity OnRewardedDidDisplayAd: rewardedId {identifier}, providerId: {networkId}");
+        Debug.Log($"BIDUnity Rewarded1 OnRewardedDidDisplayAd: rewardedId {identifier}, providerId: {networkId}");
     }
 
     public void OnRewardedDidClickAd(string identifier, string networkId)
     {
-        Debug.Log($"BIDUnity OnRewardedDidClickAd: rewardedId {identifier}, providerId: {networkId}");
+        Debug.Log($"BIDUnity Rewarded1 OnRewardedDidClickAd: rewardedId {identifier}, providerId: {networkId}");
     }
 
     public void OnRewardedDidHideAd(string identifier, string networkId)
     {
-        Debug.Log($"BIDUnity OnRewardedDidHideAd: rewardedId {identifier}, providerId: {networkId}");
+        Debug.Log($"BIDUnity Rewarded1 OnRewardedDidHideAd: rewardedId {identifier}, providerId: {networkId}");
     }
 
     public void OnRewardedDidFailToDisplayAd(string identifier, string networkId, string errorDescription)
     {
-        Debug.Log($"BIDUnity OnRewardedDidFailToDisplayAd: rewardedId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
+        Debug.Log($"BIDUnity Rewarded1 OnRewardedDidFailToDisplayAd: rewardedId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
     }
 
     public void OnRewardedAllNetworksFailedToDisplayAd(string identifier)
     {
-        Debug.Log($"BIDUnity OnRewardedAllNetworksFailedToDisplayAd: rewardedId {identifier}");
+        Debug.Log($"BIDUnity Rewarded1 OnRewardedAllNetworksFailedToDisplayAd: rewardedId {identifier}");
     }
 
     public void OnUserDidReceiveReward(string identifier)
     {
-        Debug.Log($"BIDUnity OnUserDidReceiveReward: rewardedId {identifier}");
+        Debug.Log($"BIDUnity Rewarded1 OnUserDidReceiveReward: rewardedId {identifier}");
     }
 }
 

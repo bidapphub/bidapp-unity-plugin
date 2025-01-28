@@ -40,30 +40,77 @@ namespace Bidapp
         private Dictionary<string, IBidappInterstitialDelegate> interstitialDelegates = new Dictionary<string, IBidappInterstitialDelegate>();
         private Dictionary<string, IBidappRewardedDelegate> rewardedDelegates = new Dictionary<string, IBidappRewardedDelegate>();
         private Dictionary<string, IBidappBannerDelegate> bannerDelegates = new Dictionary<string, IBidappBannerDelegate>();
+        private static readonly object _lock = new object();
 
         private static BidappSDKDelegate _sdkDelegate = null;
         public static BidappSDKDelegate Instance
-        { 
-            get { 
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    if (_sdkDelegate == null)
+                    {
+                        CreateInstance();
+                    }
+                }
                 return _sdkDelegate;
             }
         }
 
         public static void CreateInstance(MonoBehaviour obj)
         {
-            #if UNITY_IOS || UNITY_IPHONE
+            if (_sdkDelegate != null)
+            {
+                return;
+            }
 
+        #if UNITY_IOS || UNITY_IPHONE
             _sdkDelegate = obj.gameObject.AddComponent<BidappSDKDelegateIOS>();
-
-            #elif UNITY_ANDROID
-
+        #elif UNITY_ANDROID
             _sdkDelegate = obj.gameObject.AddComponent<BidappSDKDelegateAndroid>();
-
-            #else
-
+        #else
             _sdkDelegate = obj.gameObject.AddComponent<BidappSDKDelegate>();
+        #endif
 
-            #endif
+            BidappBinding.Instance.SetCallbacks(_sdkDelegate);
+        }
+
+        private static void CreateInstance()
+        {
+            string objectName = "BidappSDKDelegate";
+
+        #if UNITY_IOS || UNITY_IPHONE
+            objectName = "BidappSDKDelegateIOS";
+        #elif UNITY_ANDROID
+            objectName = "BidappSDKDelegateAndroid";
+        #endif
+
+            var existingObject = GameObject.Find(objectName);
+            if (existingObject != null)
+            {
+                _sdkDelegate = existingObject.GetComponent<BidappSDKDelegate>();
+                return;
+            }
+
+
+        #if UNITY_IOS || UNITY_IPHONE
+            var theType = typeof(BidappSDKDelegateIOS); 
+            _sdkDelegate = new GameObject(objectName, theType).GetComponent<BidappSDKDelegateIOS>();
+        #elif UNITY_ANDROID
+            var theType = typeof(BidappSDKDelegateAndroid); 
+            _sdkDelegate = new GameObject(objectName, theType).GetComponent<BidappSDKDelegateAndroid>();
+        #else
+            var theType = typeof(BidappSDKDelegate);
+            _sdkDelegate = new GameObject(objectName, theType).GetComponent<BidappSDKDelegate>();
+        #endif
+
+            BidappBinding.Instance.SetCallbacks(_sdkDelegate);
+        }
+
+        void Awake()
+        {
+            DontDestroyOnLoad(gameObject); 
         }
 
         protected void event_OnInterstitialDidLoadAd(string identifier, string networkId)

@@ -55,6 +55,7 @@ namespace Bidapp
 
                 public override void DestroyInterstitial(string identifier)
                 {
+                        BidappSDKDelegate.Instance.RemoveInterstitialDelegate(identifier);
                         Bidapp_destroyInterstitial_platform(identifier);
                 }
 
@@ -91,6 +92,7 @@ namespace Bidapp
 
                 public override void DestroyRewarded(string identifier)
                 {
+                        BidappSDKDelegate.Instance.RemoveRewardedDelegate(identifier);
                         Bidapp_destroyRewarded_platform(identifier);
                 }
 
@@ -159,6 +161,7 @@ namespace Bidapp
 
                 public override void RemoveBanner(string identifier)
                 {
+                        BidappSDKDelegate.Instance.RemoveBannerDelegate(identifier);
                         Bidapp_removeBanner_platform(identifier);
                 }
 

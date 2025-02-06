@@ -37,10 +37,10 @@ namespace Bidapp
 
     public class BidappSDKDelegate : MonoBehaviour
     {
-        private Dictionary<string, IBidappInterstitialDelegate> interstitialDelegates = new Dictionary<string, IBidappInterstitialDelegate>();
-        private Dictionary<string, IBidappRewardedDelegate> rewardedDelegates = new Dictionary<string, IBidappRewardedDelegate>();
-        private Dictionary<string, IBidappBannerDelegate> bannerDelegates = new Dictionary<string, IBidappBannerDelegate>();
-        private static readonly object _lock = new object();
+       private Dictionary<string, IBidappInterstitialDelegate> interstitialDelegates = new Dictionary<string, IBidappInterstitialDelegate>();
+       private Dictionary<string, IBidappRewardedDelegate> rewardedDelegates = new Dictionary<string, IBidappRewardedDelegate>();
+       private Dictionary<string, IBidappBannerDelegate> bannerDelegates = new Dictionary<string, IBidappBannerDelegate>();
+       private static readonly object _lock = new object();
 
         private static BidappSDKDelegate _sdkDelegate = null;
         public static BidappSDKDelegate Instance
@@ -323,6 +323,37 @@ namespace Bidapp
                 bannerDelegates.Remove(identifier);  
             }
         }
+
+        internal void RemoveInterstitialDelegate(string identifier)
+        {
+            if (identifier == null)
+            {
+                Debug.LogWarning("Remove interstitial delegate: identifier is null");
+                return;
+            }
+            interstitialDelegates.Remove(identifier);
+        }
+
+        internal void RemoveRewardedDelegate(string identifier)
+        {
+            if (identifier == null)
+            {
+                Debug.LogWarning("Remove rewarded delegate: identifier is null");
+                return;
+            }
+            rewardedDelegates.Remove(identifier);
+        }
+
+        internal void RemoveBannerDelegate(string identifier)
+        {
+            if (identifier == null)
+            {
+                Debug.LogWarning("Remove banner delegate: identifier is null");
+                return;
+            }
+            bannerDelegates.Remove(identifier);
+        }
+
 
     }
 }

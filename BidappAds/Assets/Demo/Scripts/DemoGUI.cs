@@ -113,7 +113,6 @@ public class DemoGUI : MonoBehaviour
 
 		if (GUILayout.Button("Show banner", buttonHeight))
 		{
-            BidappSDKDelegate.Instance.SetBannerDelegate(null, bannerIdentifier);
             BidappBinding.Instance.RemoveBanner(bannerIdentifier);
 			bannerIdentifier = BidappBinding.Instance.ShowBanner(BidappBannerSize.Size_320x50, 0f, 100f, 320f, 50f);
             BidappSDKDelegate.Instance.SetBannerDelegate(new BidappBannerDelegate(), bannerIdentifier);
@@ -121,7 +120,6 @@ public class DemoGUI : MonoBehaviour
 
 		if (GUILayout.Button("Show Banner At Position", buttonHeight))
 		{
-            BidappSDKDelegate.Instance.SetBannerDelegate(null, bannerIdentifier);
             BidappBinding.Instance.RemoveBanner(bannerIdentifier);
             bannerIdentifier = BidappBinding.Instance.ShowBannerAtPosition(BidappBannerPosition.BottomCenter, BidappBannerSize.Size_320x50);
             BidappSDKDelegate.Instance.SetBannerDelegate(new BidappBannerDelegate(), bannerIdentifier);
@@ -144,7 +142,6 @@ public class DemoGUI : MonoBehaviour
 
 		if (GUILayout.Button("Remove banner", buttonHeight))
 		{
-            BidappSDKDelegate.Instance.SetBannerDelegate(null, bannerIdentifier);
             BidappBinding.Instance.RemoveBanner(bannerIdentifier);
             bannerIdentifier = "";
         }

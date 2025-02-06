@@ -71,5 +71,13 @@
         <iosPod name="bidapp/Liftoff" addToAllTargets="false" />
         <iosPod name="bidapp/Chartboost" addToAllTargets="false" />
         <iosPod name="bidapp/AdMob" addToAllTargets="false" />
+        <iosPod name="bidapp/StartApp" addToAllTargets="false" />
+        <iosPod name="bidapp/Fyber" addToAllTargets="false" />
+        <iosPod name="bidapp/Facebook" addToAllTargets="false" />
+        <iosPod name="bidapp/Bigo" addToAllTargets="false" />
+        <iosPod name="bidapp/Mintegral" addToAllTargets="false" />
+        <iosPod name="bidapp/InMobi" addToAllTargets="false" />
+        <iosPod name="bidapp/IronSource" addToAllTargets="false" />
+        <iosPod name="bidapp/Smaato" addToAllTargets="false" />
     </iosPods>
 </dependencies>

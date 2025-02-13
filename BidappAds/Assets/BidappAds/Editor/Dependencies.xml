@@ -81,5 +81,6 @@
         <iosPod name="bidapp/InMobi" addToAllTargets="false" />
         <iosPod name="bidapp/IronSource" addToAllTargets="false" />
         <iosPod name="bidapp/Smaato" addToAllTargets="false" />
+		<iosPod name="bidapp/Pangle" addToAllTargets="false" />
     </iosPods>
 </dependencies>

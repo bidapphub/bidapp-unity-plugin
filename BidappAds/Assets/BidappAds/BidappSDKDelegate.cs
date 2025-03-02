@@ -47,11 +47,14 @@ namespace Bidapp
         {
             get
             {
-                lock (_lock)
+                if (_sdkDelegate == null)
                 {
-                    if (_sdkDelegate == null)
+                    lock (_lock)
                     {
-                        CreateInstance();
+                        if (_sdkDelegate == null) 
+                        {
+                            CreateInstance();
+                        }
                     }
                 }
                 return _sdkDelegate;
@@ -76,7 +79,10 @@ namespace Bidapp
             }
 
 
-        #if UNITY_IOS || UNITY_IPHONE
+        #if UNITY_EDITOR || UNITY_STANDALONE
+            var theType = typeof(BidappSDKDelegate);
+            _sdkDelegate = new GameObject(objectName, theType).GetComponent<BidappSDKDelegate>();
+        #elif UNITY_IOS || UNITY_IPHONE
             var theType = typeof(BidappSDKDelegateIOS); 
             _sdkDelegate = new GameObject(objectName, theType).GetComponent<BidappSDKDelegateIOS>();
         #elif UNITY_ANDROID

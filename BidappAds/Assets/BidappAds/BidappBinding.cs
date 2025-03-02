@@ -12,23 +12,7 @@ namespace Bidapp
         {
             get
             {
-                #if UNITY_IOS || UNITY_IPHONE
-
-                if (IosInstance == null)
-                {
-                    IosInstance = new BidappBindingIOS();
-                }
-                return IosInstance;
-
-                #elif UNITY_ANDROID
-
-                if (AndroidInstance == null)
-                {
-                    AndroidInstance = new BidappBindingAndroid();
-                }
-                return AndroidInstance;
-
-                #else
+            #if UNITY_EDITOR || UNITY_STANDALONE
 
                 if (OtherInstance == null)
                 {
@@ -36,7 +20,31 @@ namespace Bidapp
                 }
                 return OtherInstance;
 
-                #endif
+            #elif UNITY_IOS || UNITY_IPHONE
+
+                if (IosInstance == null)
+                {
+                    IosInstance = new BidappBindingIOS();
+                }
+                return IosInstance;
+
+            #elif UNITY_ANDROID
+
+                if (AndroidInstance == null)
+                {
+                    AndroidInstance = new BidappBindingAndroid();
+                }
+                return AndroidInstance;
+
+            #else
+
+                if (OtherInstance == null)
+                {
+                    OtherInstance = new BidappBinding();
+                }
+                return OtherInstance;
+
+            #endif
             }
         }
 

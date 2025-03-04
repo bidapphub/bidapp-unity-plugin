@@ -12,10 +12,11 @@ namespace Bidapp
         void OnInterstitialDidClickAd(string identifier, string networkId);
         void OnInterstitialDidHideAd(string identifier, string networkId);
         void OnInterstitialDidFailToDisplayAd(string identifier, string networkId, string errorDescription);
-        void OnInterstitialAllNetworksFailedToDisplayAd(string identifier); 
+        void OnInterstitialDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision);
+        void OnInterstitialAllNetworksFailedToDisplayAd(string identifier);      
     }
 
-   public interface IBidappRewardedDelegate
+    public interface IBidappRewardedDelegate
     {
         void OnRewardedDidLoadAd(string identifier, string networkId);
         void OnRewardedDidFailToLoadAd(string identifier, string networkId, string errorDescription);
@@ -23,6 +24,7 @@ namespace Bidapp
         void OnRewardedDidClickAd(string identifier, string networkId);
         void OnRewardedDidHideAd(string identifier, string networkId);
         void OnRewardedDidFailToDisplayAd(string identifier, string networkId, string errorDescription);
+        void OnRewardedDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision);
         void OnRewardedAllNetworksFailedToDisplayAd(string identifier);
         void OnUserDidReceiveReward(string identifier);
     }
@@ -32,6 +34,7 @@ namespace Bidapp
         void OnBannerDidDisplayAd(string identifier, string networkId);
         void OnBannerFailedToDisplayAd(string identifier, string networkId, string errorDescription);
         void OnBannerClicked(string identifier, string networkId);
+        void OnBannerDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision);
         void OnBannerAllNetworksFailedToDisplayAd(string identifier);
     }
 
@@ -155,6 +158,15 @@ namespace Bidapp
                 interstitialDelegate.OnInterstitialDidFailToDisplayAd(identifier, networkId, errorDescription);
             }
         }
+   
+        protected void event_OnInterstitialDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision)
+        {
+            IBidappInterstitialDelegate interstitialDelegate = null;
+            if (interstitialDelegates.TryGetValue(identifier, out interstitialDelegate))
+            {
+                interstitialDelegate.OnInterstitialDidReceiveRevenue(identifier, networkId, networkName, revenue, precision);
+            }
+        }
 
         protected void event_OnInterstitialAllNetworksFailedToDisplayAd(string identifier)
         {
@@ -218,6 +230,15 @@ namespace Bidapp
                 rewardedDelegate.OnRewardedDidFailToDisplayAd(identifier, networkId, errorDescription);
             }
         }
+ 
+        protected void event_OnRewardedDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision)
+        {
+            IBidappRewardedDelegate rewardedDelegate = null;
+            if (rewardedDelegates.TryGetValue(identifier, out rewardedDelegate))
+            {
+                rewardedDelegate.OnRewardedDidReceiveRevenue(identifier, networkId, networkName, revenue, precision);
+            }
+        }
 
         protected void event_OnRewardedAllNetworksFailedToDisplayAd(string identifier)
         {
@@ -261,6 +282,15 @@ namespace Bidapp
             if (bannerDelegates.TryGetValue(identifier, out bannerDelegate))
             {
                 bannerDelegate.OnBannerClicked(identifier,networkId);
+            }
+        }
+
+        protected void event_OnBannerDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision)
+        {
+            IBidappBannerDelegate bannerDelegate = null;
+            if (bannerDelegates.TryGetValue(identifier, out bannerDelegate))
+            {
+                bannerDelegate.OnBannerDidReceiveRevenue(identifier, networkId, networkName, revenue, precision);
             }
         }
 

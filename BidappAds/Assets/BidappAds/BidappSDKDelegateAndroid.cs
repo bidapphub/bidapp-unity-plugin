@@ -44,10 +44,16 @@ namespace Bidapp
             {
                 BidappThreadUtil.Post(state => _sdkDelegate.event_OnInterstitialDidFailToDisplayAd(identifier, networkId, errorDescription));
             }
+
+            public override void OnInterstitialDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision)
+            {
+                BidappThreadUtil.Post(state => _sdkDelegate.event_OnInterstitialDidReceiveRevenue(identifier, networkId, networkName, revenue, precision));
+            }
+
             public override void OnInterstitialAllNetworksFailedToDisplayAd(String errorDescription)
             {
                 BidappThreadUtil.Post(state => _sdkDelegate.event_OnInterstitialAllNetworksFailedToDisplayAd(errorDescription));
-             }
+            }
 
 
 
@@ -75,6 +81,10 @@ namespace Bidapp
             {
                 BidappThreadUtil.Post(state => _sdkDelegate.event_OnRewardedDidFailToDisplayAd(identifier, networkId, errorDescription));
             }
+            public override void OnRewardedDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision)
+            {
+                BidappThreadUtil.Post(state => _sdkDelegate.event_OnRewardedDidReceiveRevenue(identifier, networkId, networkName, revenue, precision));
+            }
             public override void OnRewardedAllNetworksFailedToDisplayAd(String errorDescription)
             {
                 BidappThreadUtil.Post(state => _sdkDelegate.event_OnRewardedAllNetworksFailedToDisplayAd(errorDescription));
@@ -97,6 +107,10 @@ namespace Bidapp
             public override void OnBannerClicked(String identifier, String networkId)
             {
                 BidappThreadUtil.Post(state => _sdkDelegate.event_OnBannerClicked(identifier, networkId));        
+            }
+            public override void OnBannerDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision)
+            {
+                BidappThreadUtil.Post(state => _sdkDelegate.event_OnBannerDidReceiveRevenue(identifier, networkId, networkName, revenue, precision));
             }
             public override void OnBannerAllNetworksFailedToDisplayAd(String identifier)
             {

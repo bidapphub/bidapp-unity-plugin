@@ -41,7 +41,11 @@ namespace Bidapp.AndroidWrapper
 		{
         }
 
-		public virtual void OnInterstitialAllNetworksFailedToDisplayAd(String errorDescription)
+        public virtual void OnInterstitialDidReceiveRevenue(String identifier, String networkId, String networkName, double revenue, String precision)
+        {
+        }
+
+        public virtual void OnInterstitialAllNetworksFailedToDisplayAd(String errorDescription)
 		{
         }
 
@@ -77,7 +81,11 @@ namespace Bidapp.AndroidWrapper
 		{
         }
 
-		public virtual void OnUserDidReceiveReward(String identifier)
+        public virtual void OnRewardedDidReceiveRevenue(String identifier, String networkId, String networkName, double revenue, String precision)
+        {
+        }
+
+        public virtual void OnUserDidReceiveReward(String identifier)
 		{
         }
 
@@ -99,7 +107,11 @@ namespace Bidapp.AndroidWrapper
 		{
         }
 
-		public virtual void OnBannerAllNetworksFailedToDisplayAd(String identifier)
+        public virtual void OnBannerDidReceiveRevenue(String identifier, String networkId, String networkName, double revenue, String precision)
+        {
+        }
+
+        public virtual void OnBannerAllNetworksFailedToDisplayAd(String identifier)
 		{
         }
 

@@ -183,6 +183,11 @@ public class BidappInterstitialDelegate : IBidappInterstitialDelegate
         Debug.Log($"BIDUnity Interstitial1 OnInterstitialDidHideAd: interstitialId {identifier}, providerId: {networkId}");
     }
 
+    public void OnInterstitialDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision)
+    {
+        Debug.Log($"BIDUnity Interstitial1 OnInterstitialDidReceiveRevenue: interstitialId {identifier}, providerId: {networkId}, networkName: {networkName}, revenue: {revenue.ToString("F6")}, precision {precision}");
+    }
+
     public void OnInterstitialDidFailToDisplayAd(string identifier, string networkId, string errorDescription)
     {
         Debug.Log($"BIDUnity Interstitial1 OnInterstitialDidFailToDisplayAd: interstitialId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
@@ -226,6 +231,11 @@ public class BidappRewardedDelegate : IBidappRewardedDelegate
         Debug.Log($"BIDUnity Rewarded1 OnRewardedDidFailToDisplayAd: rewardedId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
     }
 
+    public void OnRewardedDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision)
+    {
+        Debug.Log($"BIDUnity Rewarded1 OnRewardedDidReceiveRevenue: interstitialId {identifier}, providerId: {networkId}, networkName: {networkName}, revenue: {revenue.ToString("F6")}, precision {precision}");
+    }
+
     public void OnRewardedAllNetworksFailedToDisplayAd(string identifier)
     {
         Debug.Log($"BIDUnity Rewarded1 OnRewardedAllNetworksFailedToDisplayAd: rewardedId {identifier}");
@@ -263,6 +273,11 @@ public class BidappInterstitialDelegate2 : IBidappInterstitialDelegate
     public void OnInterstitialDidHideAd(string identifier, string networkId)
     {
         Debug.Log($"BIDUnity Interstitial2 OnInterstitialDidHideAd: interstitialId {identifier}, providerId: {networkId}");
+    }
+
+    public void OnInterstitialDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision)
+    {
+        Debug.Log($"BIDUnity Interstitial2 OnInterstitialDidReceiveRevenue: interstitialId {identifier}, providerId: {networkId}, networkName: {networkName}, revenue: {revenue.ToString("F6")}, precision {precision}");
     }
 
     public void OnInterstitialDidFailToDisplayAd(string identifier, string networkId, string errorDescription)
@@ -308,6 +323,12 @@ public class BidappRewardedDelegate2 : IBidappRewardedDelegate
         Debug.Log($"BIDUnity Rewarded2 OnRewardedDidFailToDisplayAd: rewardedId {identifier}, providerId: {networkId}, errorDescription: {errorDescription}");
     }
 
+
+    public void OnRewardedDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision)
+    {
+        Debug.Log($"BIDUnity Rewarded2 OnRewardedDidReceiveRevenue: interstitialId {identifier}, providerId: {networkId}, networkName: {networkName}, revenue: {revenue.ToString("F6")}, precision {precision}");
+    }
+
     public void OnRewardedAllNetworksFailedToDisplayAd(string identifier)
     {
         Debug.Log($"BIDUnity Rewarded2 OnRewardedAllNetworksFailedToDisplayAd: rewardedId {identifier}");
@@ -334,6 +355,12 @@ public class BidappBannerDelegate : IBidappBannerDelegate
     public void OnBannerClicked(string identifier, string networkId)
     {
         Debug.Log($"BIDUnity OnBannerClicked: bannerId {identifier}, providerId: {networkId}");
+    }
+
+
+    public void OnBannerDidReceiveRevenue(string identifier, string networkId, string networkName, double revenue, string precision)
+    {
+        Debug.Log($"BIDUnity OnBannerDidReceiveRevenue: bannerId {identifier}, providerId: {networkId}, networkName: {networkName}, revenue: {revenue.ToString("F6")}, precision {precision}");
     }
 
     public void OnBannerAllNetworksFailedToDisplayAd(string identifier)

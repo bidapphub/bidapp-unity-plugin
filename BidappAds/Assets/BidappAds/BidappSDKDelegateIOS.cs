@@ -58,6 +58,18 @@ namespace Bidapp
             event_OnInterstitialDidFailToDisplayAd(identifier, networkId, errorDescription);
         }
 
+        private void onInterstitialDidReceiveRevenue(string packedArguments)
+        {
+            string[] args = UnpackArgs(packedArguments, 5);
+            string identifier = args[0];
+            string networkId = args[1];
+            string networkName = args[2];
+            double revenue = ConvertToDouble(args[3]);
+            string precision = args[4];
+
+            event_OnInterstitialDidReceiveRevenue(identifier, networkId, networkName, revenue, precision);
+        }
+
         private void onInterstitialAllNetworksFailedToDisplayAd(string packedArguments)
         {
             string[] args = UnpackArgs(packedArguments, 3);
@@ -122,6 +134,18 @@ namespace Bidapp
             event_OnRewardedDidFailToDisplayAd(identifier, networkId, errorDescription);
         }
 
+        private void onRewardedDidReceiveRevenue(string packedArguments)
+        {
+            string[] args = UnpackArgs(packedArguments, 5);
+            string identifier = args[0];
+            string networkId = args[1];
+            string networkName = args[2];
+            double revenue = ConvertToDouble(args[3]);
+            string precision = args[4];
+
+            event_OnRewardedDidReceiveRevenue(identifier, networkId, networkName, revenue, precision);
+        }
+
         private void onRewardedAllNetworksFailedToDisplayAd(string packedArguments)
         {
             string[] args = UnpackArgs(packedArguments, 1);
@@ -166,6 +190,18 @@ namespace Bidapp
             event_OnBannerClicked(identifier, networkId);
         }
 
+        private void onBannerDidReceiveRevenue(string packedArguments)
+        {
+            string[] args = UnpackArgs(packedArguments, 5);
+            string identifier = args[0];
+            string networkId = args[1];
+            string networkName = args[2];
+            double revenue = ConvertToDouble(args[3]);
+            string precision = args[4];
+
+            event_OnBannerDidReceiveRevenue(identifier, networkId, networkName, revenue, precision);
+        }
+
         private void onBannerAllNetworksFailedToDisplayAd(string packedArguments)
         {
             string[] args = UnpackArgs(packedArguments, 1);
@@ -179,6 +215,27 @@ namespace Bidapp
             string[] args = UnpackArgs(packedArguments, 1000);
 
             event_OnEvent(args);
+        }
+
+        private double ConvertToDouble(string Value)
+        {
+            if (Value == null)
+            {
+                return 0;
+            }
+            else
+            {
+                double OutVal;
+                double.TryParse(Value, out OutVal);
+
+                if (double.IsNaN(OutVal) || 
+                    double.IsInfinity(OutVal))
+                {
+                    return 0;
+                }
+
+                return OutVal;
+            }
         }
 
         private string[] UnpackArgs(string s, uint count)

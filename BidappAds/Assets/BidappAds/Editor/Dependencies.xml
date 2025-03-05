@@ -44,7 +44,7 @@
         </androidPackage>
       
         <androidPackage spec="io.bidapp.networks:applovin:2.3.5" />
-        <androidPackage spec="io.bidapp.networks:applovinmax:2.4.0" />
+        <androidPackage spec="io.bidapp.networks:applovinmax:2.4.5" />
         <androidPackage spec="io.bidapp.networks:chartboost:2.3.5" />
         <androidPackage spec="io.bidapp.networks:liftoff:2.4.0" />
         <androidPackage spec="io.bidapp.networks:unity:2.4.0" />
